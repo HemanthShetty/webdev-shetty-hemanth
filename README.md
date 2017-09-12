@@ -1,44 +1,15 @@
-# AngularFourMEANSeed
+#About Myself
+Hi, I am Hemanth. I am pursuing my Masters in Computer Science from Northeastern University.I am in my last semester.I am passionate about solving problems and always believe in striving for excellence.
 
-After you clone this repository and run "npm install"
-To start the project
-Open two terminals, One to start the front end, One to start the backend
+I have 3.6 years of industry experience and I have previously worked as a .NET developer in retail giant Tesco and in AirWatch by VMware, which is a leader in enterprise mobility management (EMM). I have worked as a Cloud Software Engineer- Intern in New York Life Insurance Labs.
 
-~ npm start
+At Northeastern University, I am pursuing my interest in Machine Learning and working towards building a profile in Information Retrieval and Natural Language Processing.
 
+#Purpose
 
-~ nodemon server.js
+This repository contains the work done as part of the cs5610(Web Development) coursework.
 
-Front end will run on `http://localhost:4200/`
-Server will run on port 3100. Specified in server.js and in environment.ts files
+#Links
 
+Hosted URL- https://webdev-shetty-hemanth.herokuapp.com/test
 
-
-
-
-
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
