@@ -1,4 +1,4 @@
-#About Myself
+# About Myself
 
 Hi, I am Hemanth. I am pursuing my Masters in Computer Science from Northeastern University.I am in my last semester.I am passionate about solving problems and always believe in striving for excellence.
 
@@ -6,11 +6,11 @@ I have 3.6 years of industry experience and I have previously worked as a .NET d
 
 At Northeastern University, I am pursuing my interest in Machine Learning and working towards building a profile in Information Retrieval and Natural Language Processing.
 
-#Purpose
+# Purpose
 
 This repository contains the work done as part of the cs5610(Web Development) coursework.
 
-#Links
+# Links
 
 Hosted URL- https://webdev-shetty-hemanth.herokuapp.com/test
 
