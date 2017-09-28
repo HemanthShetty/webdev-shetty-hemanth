@@ -17,24 +17,13 @@ body {
   background-color: #0083c3;
 }
 
-.hsm-widget-container{
-  position: relative;
-}
 
 
-.hsm-widget-options {
+.hsm-wdv-toolbar{
   position: absolute;
-  top: 0px;
-  right: 0px;
-  background-color: #ffffff;
-  border-bottom-left-radius: 5px;
+  right: 3px;
+  background-color: lightgrey;
+  padding: 3px;
+  border-bottom-left-radius: 9px;
   opacity: 0.5;
-}
-
-.hsm-widget-option{
-  margin: 5px;
-}
-
-.hsm-widget-image{
-  width: 100%;
 }
