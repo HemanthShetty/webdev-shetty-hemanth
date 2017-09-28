@@ -1,0 +1,40 @@
+input{
+  margin-bottom: 5px;
+}
+body {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.navbar-default .navbar-text a,.navbar-default .navbar-header a{
+   color: white;
+ }
+
+
+
+
+.navbar-default{
+  background-color: #0083c3;
+}
+
+.hsm-widget-container{
+  position: relative;
+}
+
+
+.hsm-widget-options {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #ffffff;
+  border-bottom-left-radius: 5px;
+  opacity: 0.5;
+}
+
+.hsm-widget-option{
+  margin: 5px;
+}
+
+.hsm-widget-image{
+  width: 100%;
+}
