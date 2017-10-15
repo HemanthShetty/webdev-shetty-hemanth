@@ -42,7 +42,7 @@ export class WebsiteService {
   }
 
 
-  findWebsiteById(websiteId: string) {
+  findWebsiteById(websiteId: String) {
     for (let x = 0; x < this.websites.length; x++) {
       if (this.websites[x]._id === websiteId) {  return this.websites[x]; }
     }
@@ -51,8 +51,8 @@ export class WebsiteService {
   updateWebsite(websiteId, website) {
     for (let x = 0; x < this.websites.length; x++) {
       if (this.websites[x]._id === websiteId) {
-        this.websites[x].name = website.firstName;
-        this.websites[x].description = website.password;
+        this.websites[x].name = website.name;
+        this.websites[x].description = website.description;
         return this.websites[x];
       }
     }
@@ -61,7 +61,7 @@ export class WebsiteService {
   deleteWebsite(websiteId) {
     for (let x = 0; x < this.websites.length; x++) {
       if (this.websites[x]._id === websiteId) {
-        delete this.websites[x];
+        this.websites.splice(x , 1 );
       }
     }
   }

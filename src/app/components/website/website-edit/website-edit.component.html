@@ -20,11 +20,11 @@
         </p>
 
         <p class="navbar-text">
-          <a href="#"><b>New Website</b></a>
+          <a href="#"><b>Edit Website</b></a>
         </p>
 
         <p class="navbar-text pull-right">
-          <a href="website-list" class="glyphicon glyphicon-ok"></a>
+          <a (click)="updateWebsite()" class="glyphicon glyphicon-ok"></a>
         </p>
       </div>
     </div>
@@ -35,39 +35,41 @@
 
 <div class="row container-fluid">
   <div class="hidden-xs col-sm-4 col-md-4 col-lg-4 pull-left">
-    <div class="container-fluid">
-      <div>
-        <ul class="list-group">
-          <li class="list-group-item"><a href="../page/page-list.html"><b>Blogger App</b></a>
-            <a href="website-edit.html"> <span class="pull-right glyphicon glyphicon-cog"></span></a>
-          </li>
-
-          <li class="list-group-item"><a href="../page/page-list.html"><b>Food Review App</b></a>
-            <a href="website-edit.html"> <span class="pull-right glyphicon glyphicon-cog"></span></a>
-          </li>
-
-          <li class="list-group-item"><a href="../page/page-list.html"><b>Trading Platform</b></a>
-            <a href="website-edit.html"> <span class="pull-right glyphicon glyphicon-cog"></span></a>
-          </li>
-        </ul>
-      </div>
+    <div class="container-fluid" *ngFor="let site of websites">
+      <ul class="list-group">
+        <li class="list-group-item"><a [routerLink]= " [ '/user' , userId , 'website' , site._id ,'page']"><b>{{site.name}}</b></a>
+          <a [routerLink]= " [ '/user' , userId , 'website' , site._id ]"> <span class="pull-right glyphicon glyphicon-cog"></span></a>
+        </li>
+      </ul>
     </div>
   </div>
 
   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 pull-right">
     <div class="container-fluid">
-      <form>
+      <form #f="ngForm">
         <div class="form-group">
           <label for="websiteName">Name</label>
-          <input type="text" class="form-control" id="websiteName" placeholder="Name" value="Blogger">
+          <input type="text" class="form-control" id="websiteName" name="websiteName" ngModel="" #websiteName="ngModel"  [(ngModel)]=this.website.name  required>
+          <span class="help-block"
+                *ngIf="!websiteName.valid && websiteName.touched">
+            Enter a valid website name!!
+          </span>
         </div>
         <div class="form-group">
           <label for="websiteDesc">Description</label>
-          <textarea id="websiteDesc" class="form-control" name="textarea" rows="5" placeholder="Description">Some Random Description for Blogger</textarea>
+          <textarea id="websiteDesc" name="websiteDescription" class="form-control" name="textarea" rows="5" [(ngModel)]=this.website.description ngModel="" #websiteDescription="ngModel" required></textarea>
+          <span class="help-block"
+                *ngIf="!websiteDescription.valid && websiteDescription.touched">
+            You need to enter some description for the website!!
+          </span>
+        </div>
+        <div *ngIf="errorFlag"
+             class="alert alert-danger">
+          {{errorMsg}}
         </div>
         <div class="form-group">
           <a class="btn btn-danger btn-block"
-             href="website-edit.html" >Delete</a>
+             (click)="deleteWebsite()" >Delete</a>
         </div>
       </form>
     </div>

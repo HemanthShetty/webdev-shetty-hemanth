@@ -51,10 +51,18 @@
         <div class="form-group">
           <label for="websiteName">Name</label>
           <input type="text" class="form-control" id="websiteName" name="websiteName" placeholder="Name" ngModel="" #websiteName="ngModel" required>
+          <span class="help-block"
+                *ngIf="!websiteName.valid && websiteName.touched">
+            Enter a valid website name!!
+          </span>
         </div>
         <div class="form-group">
           <label for="websiteDesc">Description</label>
           <textarea id="websiteDesc" class="form-control" name="websiteDescription" rows="5" placeholder="Description" ngModel="" #websiteDescription="ngModel" required></textarea>
+          <span class="help-block"
+                *ngIf="!websiteDescription.valid && websiteDescription.touched">
+            You need to enter some description for the website!!
+          </span>
         </div>
         <div *ngIf="errorFlag"
              class="alert alert-danger">
