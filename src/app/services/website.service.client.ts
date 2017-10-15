@@ -34,7 +34,6 @@ export class WebsiteService {
     let index = 0;
     for (let x = 0 ; x < this.websites.length; x++) {
       if (this.websites[x].developerId === userId) {
-        console.log('found Match' + userId);
         result[index] = this.websites[x];
         index++;
       }
