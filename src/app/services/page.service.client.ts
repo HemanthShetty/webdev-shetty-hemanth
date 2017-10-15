@@ -12,7 +12,9 @@ export class PageService {
   pages = [
               { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
               { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-              { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
+              { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' },
+              { '_id': '541', 'name': 'Post 4', 'websiteId': '890', 'description': 'Page about Go Pro' },
+              { '_id': '549', 'name': 'Post 5', 'websiteId': '890', 'description': 'Page about SnapChat' }
           ];
 
 
@@ -31,8 +33,8 @@ export class PageService {
         result[index] = this.pages[x];
         index++;
       }
-      return result;
     }
+    return result;
   }
 
   findPageById(pageId: string) {
