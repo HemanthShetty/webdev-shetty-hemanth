@@ -1,16 +1,111 @@
 <div class="container">
-  <h1>Register</h1>
-  <input placeholder="username"
-         type="text"
-         class="form-control"/>
-  <input placeholder="password"
-         type="password"
-         class="form-control"/>
-  <input placeholder="verify password"
-         type="password"
-         class="form-control"/>
-  <a class="btn btn-primary btn-block"
-     href="profile.html">Register</a>
-  <a class="btn btn-danger btn-block"
-     href="login.html" >Cancel</a>
+  <form (ngSubmit)="createUser()" #f="ngForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input name="userName"
+             id="userName"
+             ngModel=""
+             required=""
+             placeholder="username"
+             type="text"
+             class="form-control"
+             #userName="ngModel"/>
+      <span class="help-block"
+            *ngIf="!userName.valid && userName.touched">
+            Please enter username!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input name="email"
+             id="email"
+             ngModel=""
+             required=""
+             placeholder="email"
+             type="email"
+             class="form-control"
+             #email="ngModel"
+             email/>
+      <span class="help-block"
+            *ngIf="!email.valid && email.touched">
+            Please enter email!
+          </span>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input name="firstName"
+             id="firstName"
+             ngModel=""
+             required=""
+             placeholder="First Name"
+             type="text"
+             class="form-control"
+             #firstName="ngModel"/>
+      <span class="help-block"
+            *ngIf="!firstName.valid && firstName.touched">
+            Please enter firstName!
+          </span>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input name="lastName"
+             id="lastName"
+             ngModel=""
+             required=""
+             placeholder="Last Name"
+             type="text"
+             class="form-control"
+             #lastName="ngModel"/>
+      <span class="help-block"
+            *ngIf="!lastName.valid && lastName.touched">
+            Please enter lastName!
+          </span>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input name="password"
+             id="password"
+             ngModel=""
+             required=""
+             placeholder="password"
+             type="password"
+             class="form-control"
+             #password="ngModel"/>
+      <span class="help-block"
+            *ngIf="!password.valid && password.touched">
+            Please enter a password!
+          </span>
+    </div>
+    <div class="form-group">
+      <label for="verifyPassword">Verify Password</label>
+      <input name="verifyPassword"
+             id="verifyPassword"
+             ngModel=""
+             required
+             placeholder="verify password"
+             type="password"
+             class="form-control"
+             #verifyPassword="ngModel"/>
+      <span class="help-block"
+            *ngIf="!verifyPassword.valid && verifyPassword.touched && isPasswordVerified()">
+            Your passwords do not match!!
+          </span>
+    </div>
+    <div *ngIf="errorFlag"
+         class="alert alert-danger">
+      {{errorMsg}}
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block"
+              [disabled]="!f.valid">
+        Register
+      </button>
+    </div>
+    <div class="form-group">
+      <a class="btn btn-danger btn-block"
+         routerLink="/login">
+        Cancel
+      </a>
+    </div>
+  </form>
 </div>
