@@ -26,7 +26,7 @@ export class WidgetService {
   ];
 
   createWidget(pageId, widget) {
-    widget._id = Math.random() + '';
+    widget._id = String(Math.random());
     widget.pageId = pageId;
     this.widgets.push(widget);
     return widget;

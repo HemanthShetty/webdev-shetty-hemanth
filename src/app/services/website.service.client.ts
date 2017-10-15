@@ -22,7 +22,7 @@ export class WebsiteService {
   ];
 
   createWebsite(userId, website) {
-    website._id = Math.random();
+    website._id = String(Math.random());
     website.developerId = userId;
     this.websites.push(website);
     return website;

@@ -17,7 +17,7 @@ export class PageService {
 
 
   createPage(websiteId, page) {
-    page._id = Math.random();
+    page._id = String(Math.random());
     page.developerId = websiteId;
     this.pages.push(page);
     return page;
