@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+input{
+  margin-bottom: 5px;
+}
+body {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.navbar-default .navbar-text a,.navbar-default .navbar-header a{
+  color: white;
+}
+
+
+
+
+.navbar-default{
+  background-color: #0083c3;
+}
+
+
+
+.hsm-wdv-toolbar{
+  position: absolute;
+  right: 3px;
+  background-color: lightgrey;
+  padding: 3px;
+  border-bottom-left-radius: 9px;
+  opacity: 0.5;
+}
+

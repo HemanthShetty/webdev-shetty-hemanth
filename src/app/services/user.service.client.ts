@@ -12,8 +12,8 @@ export class UserService {
   constructor() { }
 
   users = [
-    {_id: '123', username: 'alice', password: 'alice', firstName : 'Alice', lastName : 'Wonder' },
-    {_id: '234', username: 'bob', password: 'bob', firstName : 'Bob', lastName : 'Marley'},
+    {_id: '123', username: 'alice', password: 'alice', firstName : 'Alice', lastName : 'Wonder' , email : 'alice@gmail.com' },
+    {_id: '234', username: 'bob', password: 'bob', firstName : 'Bob', lastName : 'Marley' , email : 'bob@gmail.com' },
 // ... rest of user objects
 
   ];
@@ -29,7 +29,7 @@ export class UserService {
     return user;
   }
 
-  findUserById(userId: string) {
+  findUserById(userId: String) {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x]._id === userId) {  return this.users[x]; }
     }
@@ -50,6 +50,7 @@ export class UserService {
         this.users[x].lastName = user.lastName;
         this.users[x].username = user.username;
         this.users[x].password = user.password;
+        this.users[x].email = user.email;
         return this.users[x];
       }
     }
