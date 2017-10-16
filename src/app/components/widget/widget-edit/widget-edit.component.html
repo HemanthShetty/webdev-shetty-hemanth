@@ -1,19 +1,19 @@
-<div class="container-fluid">
+<div [ngSwitch]="widget['widgetType']">
 
-  <div *ngIf="this.widgetId==1">
+  <div *ngSwitchCase="'HEADING'">
     <app-widget-header></app-widget-header>
   </div>
 
-  <div *ngIf="this.widgetId==2">
+  <div *ngSwitchCase="'IMAGE'">
     <app-widget-image></app-widget-image>
   </div>
 
-  <div *ngIf="this.widgetId==3">
+  <div *ngSwitchCase="'YOUTUBE'">
     <app-widget-youtube></app-widget-youtube>
   </div>
 
-  <div *ngIf="this.widgetId==4">
-
+  <div *ngSwitchCase="'HTML'">
+    <app-widget-html></app-widget-html>
   </div>
 
 </div>
