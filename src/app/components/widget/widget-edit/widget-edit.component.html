@@ -1,3 +1,19 @@
-<p>
-  widget-edit works!
-</p>
+<div class="container-fluid">
+
+  <div *ngIf="this.widgetId==1">
+    <app-widget-header></app-widget-header>
+  </div>
+
+  <div *ngIf="this.widgetId==2">
+    <app-widget-image></app-widget-image>
+  </div>
+
+  <div *ngIf="this.widgetId==3">
+    <app-widget-youtube></app-widget-youtube>
+  </div>
+
+  <div *ngIf="this.widgetId==4">
+
+  </div>
+
+</div>
