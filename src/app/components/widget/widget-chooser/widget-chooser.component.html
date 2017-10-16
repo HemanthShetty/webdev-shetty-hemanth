@@ -1,47 +1,47 @@
-<!-- Navigation Bar -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<!--Header-->
+<nav class="navbar navbar-default navbar-fixed-top widget-navbar-header">
   <div class="container-fluid">
 
-    <!--back mark-->
     <p class="navbar-text pull-left">
-      <a href="widget-list.html" class="navbar-link">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget" class="glyphicon glyphicon-chevron-left"></a>
     </p>
 
-    <!--heading on the nav bar-->
-    <p class="navbar-header pull-left">
-      <a class="navbar-brand thick">
-        <b>Choose Widget</b>
-      </a>
-    </p>
-
+    <a class="navbar-brand" href="#"><b>Choose Widget</b></a>
 
   </div>
 </nav>
-
-<!-- Main content of the body-->
-
+<!--Header end-->
 <div class="container-fluid">
   <ul class="list-group">
-    <li class="list-group-item"><a href="widget-heading.html"><b>Header</b></a> </li>
-    <li class="list-group-item"><a href="widget-image.html"><b>Image</b></a> </li>
-    <li class="list-group-item"><a href="widget-youtube.html"><b>YouTube</b></a> </li>
-    <li class="list-group-item"><a href="#"><b>TextInput</b></a> </li>
-    <li class="list-group-item"><a href="#"><b>Label</b></a> </li>
+    <li class="list-group-item widget-list">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/1">Header</a>
+    </li>
+    <li class="list-group-item widget-list">
+      <a >Label</a>
+    </li>
+    <li class="list-group-item widget-list">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/4">HTML</a>
+    </li>
+    <li class="list-group-item widget-list">
+      <a>Text Input</a>
+    </li>
+    <li class="list-group-item widget-list">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/2">Image</a>
+    </li>
+    <li class="list-group-item widget-list">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/3">YouTube Video</a>
+    </li>
   </ul>
 </div>
 
 
 <!-- Footer -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom widget-navbar-footer">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a routerLink="/user/{{userId}}">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
-
   </div>
 </nav>
-
