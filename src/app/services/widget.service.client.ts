@@ -22,7 +22,12 @@ export class WidgetService {
       '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
       'url': 'https://www.youtube.com/embed/vlDzYIIOYmM'
     },
-    {'_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
+    {'_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
+    {'_id': '5671', 'widgetType': 'HEADING', 'pageId': '541', 'size': 4, 'text': 'Lorem ipsum'},
+    {
+      '_id': '6781', 'widgetType': 'YOUTUBE', 'pageId': '541', 'width': '100%',
+      'url': 'https://www.youtube.com/embed/vlDzYIIOYmM'
+    }
   ];
 
   createWidget(pageId, widget) {
