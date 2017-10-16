@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { PageService } from '../../../services/page.service.client';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
+import {Page} from '../../../models/page.model.client';
 
 @Component({
   selector: 'app-page-new',
@@ -7,9 +11,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNewComponent implements OnInit {
 
-  constructor() { }
+  userId: String;
+  websiteId: String;
+  pages = [{}];
+  errorFlag: boolean;
+  errorMsg: String;
+  pageDetails: Page;
+  @ViewChild('f') websiteForm: NgForm;
+
+  constructor(private pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.userId = params['uid'];
+          this.websiteId = params['wid'];
+        }
+      );
+    this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
+    this.pageDetails = new Page('', '' , '' , '' );
+  }
+  createPage() {
+    if (this.websiteForm.valid) {
+      this.pageDetails.name = this.websiteForm.value.pageName;
+      this.pageDetails.description = this.websiteForm.value.pageDescription;
+      this.pageDetails.websiteId = this.websiteId.toString();
+      this.pageService.createPage(this.websiteId, this.pageDetails);
+      this.router.navigate(['/user', this.userId , 'website' , this.websiteId , 'page']);
+    } else {
+      this.errorMsg = 'Please Enter The Correct Values';
+      this.errorFlag = true ;
+    }
   }
 
 }
