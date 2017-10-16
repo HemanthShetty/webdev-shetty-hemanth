@@ -37,7 +37,7 @@ export class PageService {
     return result;
   }
 
-  findPageById(pageId: string) {
+  findPageById(pageId: String) {
     for (let x = 0; x < this.pages.length; x++) {
       if (this.pages[x]._id === pageId) {  return this.pages[x]; }
     }
@@ -46,8 +46,8 @@ export class PageService {
   updatePage(pageId, page) {
     for (let x = 0; x < this.pages.length; x++) {
       if (this.pages[x]._id === pageId) {
-        this.pages[x].name = page.firstName;
-        this.pages[x].description = page.password;
+        this.pages[x].name = page.name;
+        this.pages[x].description = page.description;
         return this.pages[x];
       }
     }
@@ -56,7 +56,7 @@ export class PageService {
   deletePage(pageId) {
     for (let x = 0; x < this.pages.length; x++) {
       if (this.pages[x]._id === pageId) {
-        delete this.pages[x];
+        this.pages.splice(x , 1);
       }
     }
   }
