@@ -1,47 +1,45 @@
-<!--Header-->
-<nav class="navbar navbar-default navbar-fixed-top widget-navbar-header">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-
-    <p class="navbar-text pull-left">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget" class="glyphicon glyphicon-chevron-left"></a>
-    </p>
-
-    <a class="navbar-brand" href="#"><b>Choose Widget</b></a>
-
-  </div>
-</nav>
-<!--Header end-->
-<div class="container-fluid">
-  <ul class="list-group">
-    <li class="list-group-item widget-list">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/1">Header</a>
-    </li>
-    <li class="list-group-item widget-list">
-      <a >Label</a>
-    </li>
-    <li class="list-group-item widget-list">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/4">HTML</a>
-    </li>
-    <li class="list-group-item widget-list">
-      <a>Text Input</a>
-    </li>
-    <li class="list-group-item widget-list">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/2">Image</a>
-    </li>
-    <li class="list-group-item widget-list">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/3">YouTube Video</a>
-    </li>
-  </ul>
-</div>
-
-
-<!-- Footer -->
-<nav class="navbar navbar-default navbar-fixed-bottom widget-navbar-footer">
-  <div class="container-fluid">
-    <p class="navbar-text pull-right">
-      <a routerLink="/user/{{userId}}">
-        <span class="glyphicon glyphicon-user"></span>
+    <!--back sign-->
+    <div class="navbar-brand pull-left left-margin-fix">
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"
+         class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+    </div>
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand ">
+        <b>Choose Widget</b>
       </a>
     </p>
   </div>
+</nav>
+
+
+<div class="container-fluid">
+
+  <ul class="list-group">
+    <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'heading']"
+       class="list-group-item">
+      Header
+    </a>
+    <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'image']"
+       class="list-group-item">
+      Image
+    </a>
+    <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new', 'youtube']"
+       class="list-group-item">
+      Youtube
+    </a>
+  </ul>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <p class="navbar-brand pull-right">
+    <a [routerLink]="['/user', userId]">
+      <span class="glyphicon glyphicon-user"></span>
+    </a>
+  </p>
 </nav>

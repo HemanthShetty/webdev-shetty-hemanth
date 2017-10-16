@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-widget-chooser',
@@ -11,13 +11,15 @@ export class WidgetChooserComponent implements OnInit {
   userId: String;
   websiteId: String;
   pageId: String;
-  constructor(private activatedRoute: ActivatedRoute) {}
+
+  constructor(private activatedRoutes: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoutes.params.subscribe(params => {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
     });
   }
+
 }
