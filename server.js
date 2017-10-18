@@ -36,7 +36,7 @@ const port = process.env.PORT || '3100';
 app.set('port', port);
 
 app.get('/api/proc', function(req, res) {
-  res.json(proc);
+  res.json(process.env);
 });
 
 // Create HTTP server
