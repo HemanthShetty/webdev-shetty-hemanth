@@ -35,6 +35,9 @@ app.use(function(req, res, next) {
 const port = process.env.PORT || '3100';
 app.set('port', port);
 
+app.get('/api/proc', function(req, res) {
+  res.json(proc);
+});
 
 // Create HTTP server
 const server = http.createServer(app);
