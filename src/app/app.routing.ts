@@ -27,10 +27,10 @@ import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/w
 
 
 const APP_ROUTES: Routes = [
-  {path: '', component : HomeComponent},
+  {path: '', component : LoginComponent},
   {path: 'test', component: TestComponent},
   {path : 'login' , component: LoginComponent},
-  {path : 'default' , component: LoginComponent},
+  {path : 'home' , component: HomeComponent},
   {path : 'register' , component: RegisterComponent },
   {path : 'user/:userId' , component: ProfileComponent},
   {path : 'user/:userId/website' , component: WebsiteListComponent},
