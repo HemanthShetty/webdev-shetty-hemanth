@@ -23,10 +23,86 @@ module.exports = function(app) {
     return;
   }
 
-  
+  function findUser(req, res){
+    var username = req.query['username'];
+    var password = req.query['password'];
+    if(password === undefined) {
+      findUserByUsername(req, res);
+    }else{
+      findUserByCredentails(req,res);
+    }
+  }
 
 
+  function findUserByUsername(req,res){
+    var username = req.query['username'];
+    for(var i=0;i<=users.length;i++)
+    {
+      if(users[i].username===username)
+      {
+        res.json(users[i]);
+        return;
+      }
+    }
+    res.json(null);
+  }
 
+  function findUserByCredentails(req,res){
+    var username = req.query['username'];
+    var password = req.query['password'];
+    for(var i=0;i<=users.length;i++)
+    {
+      if(users[i].username===username)
+      {
+        res.json(users[i]);
+        return;
+      }
+    }
+    res.json(null);
+  }
 
+  function findUserById(req,res)
+  {
+    var userId = req.params['userId'];
+    for(var i=0;i<=users.length;i++)
+    {
+      if(users[i]._id===userId)
+      {
+        res.json(users[i]);
+        return;
+      }
+    }
+    res.json(null);
+  }
 
+  function updateUser(req,res)
+  {
+    var userId = req.params['userId'];
+    var userDetails=req.body;
+    for(var i=0;i<=users.length;i++)
+    {
+      if(users[i]._id===userId)
+      {
+        users[i].username=userDetails.username;
+        users[i].password=userDetails.username;
+        users[i].firstName=userDetails.firstName;
+        users[i].lastName=userDetails.lastName;
+        users[i].email=userDetails.email;
+        res.json({success:true});
+        return;
+      }
+    }
+    res.json(null);
+  }
+
+  function deleteUser(req,res)
+  {
+    var userId = req.params.uid;
+    for (var i=0 ; i < users.length ; i++ ) {
+      if (users[i]._id === userId) {
+        users.splice(i, 1);
+      }
+    }
+    res.json({success:true});
+  }
 }
