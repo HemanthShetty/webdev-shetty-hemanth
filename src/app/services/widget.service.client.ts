@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
-
+import { environment } from '../../environments/environment';
+import { Http, RequestOptions, Response } from '@angular/http';
 // injecting service into module
 @Injectable()
 
 export class WidgetService {
 
-  constructor() {
+  constructor(private _http: Http) {
   }
-
+  baseUrl = environment.baseUrl;
   widgets = [
     {'_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
     {'_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
@@ -33,9 +34,11 @@ export class WidgetService {
   }
 
   findWidgetsByPageId(pageId) {
-    return this.widgets.filter(function (widget) {
-      return widget['pageId'] === pageId;
-    });
+    return this._http.get(this.baseUrl + '/api/page/' +  pageId + '/widget')
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   findWidgetById(widgetId) {

@@ -15,7 +15,8 @@ export class WidgetListComponent implements OnInit {
   websiteId: String;
   pageId: String;
   widgetList;
-  constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) { }
+  constructor(private widgetService: WidgetService, private router: Router
+              , private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -23,8 +24,14 @@ export class WidgetListComponent implements OnInit {
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
     });
-
-    this.widgetList = this.widgetService.findWidgetsByPageId(this.pageId);
+    this.widgetService.findWidgetsByPageId(this.pageId)
+      .subscribe(
+        (data: any) => {
+          this.widgetList = data;
+        },
+        (error: any) => {
+        }
+      );
   }
 
   sanitizedURL(url) {
