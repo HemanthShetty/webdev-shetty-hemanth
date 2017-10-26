@@ -43,7 +43,6 @@ export class WebsiteEditComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.website = data;
-          console.log(JSON.stringify(data));
           if (data == null) {
             this.errorFlag = true;
             this.errorMsg = 'Error Fetching Website details' ;
@@ -62,7 +61,6 @@ export class WebsiteEditComponent implements OnInit {
     if (this.websiteForm.valid) {
       this.websiteDetails.name = this.websiteForm.value.websiteName;
       this.websiteDetails.description = this.websiteForm.value.websiteDescription;
-      console.log('des: ' + this.websiteForm.value.websiteDescription);
       this.websiteService.updateWebsite(this.websiteId, this.websiteDetails)
         .subscribe(
           (data: any) => {
