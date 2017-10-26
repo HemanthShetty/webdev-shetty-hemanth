@@ -23,6 +23,7 @@ export class PageEditComponent implements OnInit {
   constructor(private pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.updatedPageDetails = new Page('', '' , '' , '');
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
@@ -31,15 +32,49 @@ export class PageEditComponent implements OnInit {
           this.pageId = params['pid'];
         }
       );
-    this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
-    this.updatedPageDetails = this.pageService.findPageById(this.pageId);
+    this.pageService.findPageByWebsiteId(this.websiteId)
+      .subscribe(
+        (data: any) => {
+          this.pages = data;
+        },
+        (error: any) => {
+        }
+      );
+    this.pageService.findPageById(this.pageId)
+      .subscribe(
+        (data: any) => {
+          if (data == null) {
+            this.errorFlag = true;
+            this.errorMsg = 'Error Fetching Website details' ;
+          }else {
+            this.updatedPageDetails = data;
+          }
+        },
+        (error: any) => {
+          this.errorFlag = true;
+          this.errorMsg = 'Error Fetching Website details' ;
+        }
+      );
   }
   updatePage() {
     if (this.websiteForm.valid) {
       this.updatedPageDetails.name = this.websiteForm.value.pageName;
       this.updatedPageDetails.description = this.websiteForm.value.pageDescription;
-      this.pageService.updatePage(this.pageId, this.updatedPageDetails);
-      this.router.navigate(['/user', this.userId , 'website' , this.websiteId , 'page']);
+      this.pageService.updatePage(this.pageId, this.updatedPageDetails)
+        .subscribe(
+          (data: any) => {
+            if (data == null) {
+              this.errorFlag = true;
+              this.errorMsg = 'Error Updating Page details' ;
+            } else {
+              this.router.navigate(['/user', this.userId , 'website' , this.websiteId , 'page']);
+            }
+          },
+          (error: any) => {
+            this.errorFlag = true;
+            this.errorMsg = 'Error Updating Page details' ;
+          }
+        );
     } else {
       this.errorMsg = 'Please Enter The Correct Values';
       this.errorFlag = true ;
@@ -47,8 +82,19 @@ export class PageEditComponent implements OnInit {
   }
 
   deletePage() {
-    this.pageService.deletePage(this.pageId);
-    this.router.navigate(['/user', this.userId , 'website' , this.websiteId , 'page']);
+    this.pageService.deletePage(this.pageId)
+      .subscribe(
+        (data: any) => {
+          if (data.success) {
+            this.router.navigate(['/user', this.userId , 'website' , this.websiteId , 'page']);
+          } else {
+            this.errorFlag = true;
+            this.errorMsg = 'Error Deleting Page' ;
+          }
+        },
+        (error: any) => {
+        }
+      );
   }
 
 

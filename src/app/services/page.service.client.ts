@@ -9,56 +9,47 @@ import { Router } from '@angular/router';
 
 export class PageService {
 
-  pages = [
-              { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-              { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-              { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' },
-              { '_id': '541', 'name': 'Post 4', 'websiteId': '890', 'description': 'Page about Go Pro' },
-              { '_id': '549', 'name': 'Post 5', 'websiteId': '890', 'description': 'Page about SnapChat' }
-          ];
-
+  constructor(private _http: Http) { }
+  baseUrl = environment.baseUrl || 'localhost:3100' ;
 
   createPage(websiteId, page) {
-    page._id = String(Math.random());
-    page.developerId = websiteId;
-    this.pages.push(page);
-    return page;
+    return this._http.post(this.baseUrl + '/api/website/' + websiteId + '/page', page)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   findPageByWebsiteId(websiteId) {
-    const result = [];
-    let index = 0;
-    for (let x = 0 ; x < this.pages.length; x++) {
-      if (this.pages[x].websiteId === websiteId) {
-        result[index] = this.pages[x];
-        index++;
-      }
-    }
-    return result;
+    return this._http.get(this.baseUrl + '/api/website/' + websiteId + '/page')
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   findPageById(pageId: String) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {  return this.pages[x]; }
-    }
+    return this._http.get(this.baseUrl + '/api/page/' +  pageId)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   updatePage(pageId, page) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {
-        this.pages[x].name = page.name;
-        this.pages[x].description = page.description;
-        return this.pages[x];
-      }
-    }
+    return this._http.put(this.baseUrl + '/api/page/' +  pageId, page)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   deletePage(pageId) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {
-        this.pages.splice(x , 1);
-      }
-    }
+    return this._http.delete(this.baseUrl + '/api/page/' +  pageId)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
 }

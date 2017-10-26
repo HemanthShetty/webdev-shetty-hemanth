@@ -29,7 +29,14 @@ export class PageNewComponent implements OnInit {
           this.websiteId = params['wid'];
         }
       );
-    this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
+    this.pageService.findPageByWebsiteId(this.websiteId)
+      .subscribe(
+        (data: any) => {
+          this.pages = data;
+        },
+        (error: any) => {
+        }
+      );
     this.pageDetails = new Page('', '' , '' , '' );
   }
   createPage() {
@@ -37,8 +44,16 @@ export class PageNewComponent implements OnInit {
       this.pageDetails.name = this.websiteForm.value.pageName;
       this.pageDetails.description = this.websiteForm.value.pageDescription;
       this.pageDetails.websiteId = this.websiteId.toString();
-      this.pageService.createPage(this.websiteId, this.pageDetails);
-      this.router.navigate(['/user', this.userId , 'website' , this.websiteId , 'page']);
+      this.pageService.createPage(this.websiteId, this.pageDetails)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId , 'website' , this.websiteId , 'page']);
+          },
+          (error: any) => {
+            this.errorMsg = 'Please Enter The Correct Values';
+            this.errorFlag = true ;
+          }
+        );
     } else {
       this.errorMsg = 'Please Enter The Correct Values';
       this.errorFlag = true ;

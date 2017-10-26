@@ -341,6 +341,7 @@ module.exports = "<!-- Header -->\n<nav class=\"navbar navbar-default navbar-fix
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_page_model_client__ = __webpack_require__("../../../../../src/app/models/page.model.client.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageEditComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -355,6 +356,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PageEditComponent = (function () {
     function PageEditComponent(pageService, activatedRoute, router) {
         this.pageService = pageService;
@@ -364,21 +366,50 @@ var PageEditComponent = (function () {
     }
     PageEditComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.updatedPageDetails = new __WEBPACK_IMPORTED_MODULE_4__models_page_model_client__["a" /* Page */]('', '', '', '');
         this.activatedRoute.params
             .subscribe(function (params) {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
             _this.pageId = params['pid'];
         });
-        this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
-        this.updatedPageDetails = this.pageService.findPageById(this.pageId);
+        this.pageService.findPageByWebsiteId(this.websiteId)
+            .subscribe(function (data) {
+            _this.pages = data;
+        }, function (error) {
+        });
+        this.pageService.findPageById(this.pageId)
+            .subscribe(function (data) {
+            if (data == null) {
+                _this.errorFlag = true;
+                _this.errorMsg = 'Error Fetching Website details';
+            }
+            else {
+                _this.updatedPageDetails = data;
+            }
+        }, function (error) {
+            _this.errorFlag = true;
+            _this.errorMsg = 'Error Fetching Website details';
+        });
     };
     PageEditComponent.prototype.updatePage = function () {
+        var _this = this;
         if (this.websiteForm.valid) {
             this.updatedPageDetails.name = this.websiteForm.value.pageName;
             this.updatedPageDetails.description = this.websiteForm.value.pageDescription;
-            this.pageService.updatePage(this.pageId, this.updatedPageDetails);
-            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+            this.pageService.updatePage(this.pageId, this.updatedPageDetails)
+                .subscribe(function (data) {
+                if (data == null) {
+                    _this.errorFlag = true;
+                    _this.errorMsg = 'Error Updating Page details';
+                }
+                else {
+                    _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page']);
+                }
+            }, function (error) {
+                _this.errorFlag = true;
+                _this.errorMsg = 'Error Updating Page details';
+            });
         }
         else {
             this.errorMsg = 'Please Enter The Correct Values';
@@ -386,8 +417,18 @@ var PageEditComponent = (function () {
         }
     };
     PageEditComponent.prototype.deletePage = function () {
-        this.pageService.deletePage(this.pageId);
-        this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+        var _this = this;
+        this.pageService.deletePage(this.pageId)
+            .subscribe(function (data) {
+            if (data.success) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page']);
+            }
+            else {
+                _this.errorFlag = true;
+                _this.errorMsg = 'Error Deleting Page';
+            }
+        }, function (error) {
+        });
     };
     return PageEditComponent;
 }());
@@ -468,7 +509,11 @@ var PageListComponent = (function () {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
         });
-        this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
+        this.pageService.findPageByWebsiteId(this.websiteId)
+            .subscribe(function (data) {
+            _this.pages = data;
+        }, function (error) {
+        });
     };
     return PageListComponent;
 }());
@@ -549,16 +594,26 @@ var PageNewComponent = (function () {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
         });
-        this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
+        this.pageService.findPageByWebsiteId(this.websiteId)
+            .subscribe(function (data) {
+            _this.pages = data;
+        }, function (error) {
+        });
         this.pageDetails = new __WEBPACK_IMPORTED_MODULE_4__models_page_model_client__["a" /* Page */]('', '', '', '');
     };
     PageNewComponent.prototype.createPage = function () {
+        var _this = this;
         if (this.websiteForm.valid) {
             this.pageDetails.name = this.websiteForm.value.pageName;
             this.pageDetails.description = this.websiteForm.value.pageDescription;
             this.pageDetails.websiteId = this.websiteId.toString();
-            this.pageService.createPage(this.websiteId, this.pageDetails);
-            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+            this.pageService.createPage(this.websiteId, this.pageDetails)
+                .subscribe(function (data) {
+                _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page']);
+            }, function (error) {
+                _this.errorMsg = 'Please Enter The Correct Values';
+                _this.errorFlag = true;
+            });
         }
         else {
             this.errorMsg = 'Please Enter The Correct Values';
@@ -2014,8 +2069,10 @@ var Website = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2023,65 +2080,57 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
 
 
 // injecting service into module
 var PageService = (function () {
-    function PageService() {
-        this.pages = [
-            { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '541', 'name': 'Post 4', 'websiteId': '890', 'description': 'Page about Go Pro' },
-            { '_id': '549', 'name': 'Post 5', 'websiteId': '890', 'description': 'Page about SnapChat' }
-        ];
+    function PageService(_http) {
+        this._http = _http;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl || 'localhost:3100';
     }
     PageService.prototype.createPage = function (websiteId, page) {
-        page._id = String(Math.random());
-        page.developerId = websiteId;
-        this.pages.push(page);
-        return page;
+        return this._http.post(this.baseUrl + '/api/website/' + websiteId + '/page', page)
+            .map(function (res) {
+            return res.json();
+        });
     };
     PageService.prototype.findPageByWebsiteId = function (websiteId) {
-        var result = [];
-        var index = 0;
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x].websiteId === websiteId) {
-                result[index] = this.pages[x];
-                index++;
-            }
-        }
-        return result;
+        return this._http.get(this.baseUrl + '/api/website/' + websiteId + '/page')
+            .map(function (res) {
+            return res.json();
+        });
     };
     PageService.prototype.findPageById = function (pageId) {
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x]._id === pageId) {
-                return this.pages[x];
-            }
-        }
+        return this._http.get(this.baseUrl + '/api/page/' + pageId)
+            .map(function (res) {
+            return res.json();
+        });
     };
     PageService.prototype.updatePage = function (pageId, page) {
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x]._id === pageId) {
-                this.pages[x].name = page.name;
-                this.pages[x].description = page.description;
-                return this.pages[x];
-            }
-        }
+        return this._http.put(this.baseUrl + '/api/page/' + pageId, page)
+            .map(function (res) {
+            return res.json();
+        });
     };
     PageService.prototype.deletePage = function (pageId) {
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x]._id === pageId) {
-                this.pages.splice(x, 1);
-            }
-        }
+        return this._http.delete(this.baseUrl + '/api/page/' + pageId)
+            .map(function (res) {
+            return res.json();
+        });
     };
     return PageService;
 }());
 PageService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])()
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], PageService);
 
+var _a;
 //# sourceMappingURL=page.service.client.js.map
 
 /***/ }),
