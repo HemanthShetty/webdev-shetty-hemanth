@@ -7,5 +7,6 @@
 
 export const environment = {
   production: false,
-  baseUrl : 'http://localhost:3100'
+  //baseUrl : 'http://localhost:3100'
+  baseUrl: 'https://webdev-shetty-hemanth.herokuapp.com'
 };
