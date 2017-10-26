@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private _http: Http) { }
 
-  baseUrl = environment.baseUrl || 'localhost:3100' ;
+  baseUrl = environment.baseUrl;
 
   api = {
     'createUser'   : this.createUser,

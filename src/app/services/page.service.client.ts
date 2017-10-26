@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class PageService {
 
   constructor(private _http: Http) { }
-  baseUrl = environment.baseUrl || 'localhost:3100' ;
+  baseUrl = environment.baseUrl;
 
   createPage(websiteId, page) {
     return this._http.post(this.baseUrl + '/api/website/' + websiteId + '/page', page)

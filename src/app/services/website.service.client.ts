@@ -11,7 +11,7 @@ export class WebsiteService {
 
   constructor(private _http: Http) { }
 
-  baseUrl = environment.baseUrl || 'localhost:3100' ;
+  baseUrl = environment.baseUrl;
 
   createWebsite(userId, website) {
     return this._http.post(this.baseUrl + '/api/user/' + userId + '/website', website)
