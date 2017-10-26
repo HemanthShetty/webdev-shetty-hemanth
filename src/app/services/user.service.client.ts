@@ -9,14 +9,9 @@ import { Router } from '@angular/router';
 
 export class UserService {
 
-  constructor() { }
+  constructor(private _http: Http) { }
 
-  users = [
-    {_id: '123', username: 'alice', password: 'alice', firstName : 'Alice', lastName : 'Wonder' , email : 'alice@gmail.com' },
-    {_id: '234', username: 'bob', password: 'bob', firstName : 'Bob', lastName : 'Marley' , email : 'bob@gmail.com' },
-// ... rest of user objects
-
-  ];
+  baseUrl = environment.baseUrl || 'localhost:3100' ;
 
   api = {
     'createUser'   : this.createUser,
@@ -24,44 +19,50 @@ export class UserService {
   };
 
   createUser(user: any) {
-    user._id = String(Math.random());
-    this.users.push(user);
-    return user;
+    return this._http.post(this.baseUrl + '/api/user', user)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   findUserById(userId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {  return this.users[x]; }
-    }
+    return this._http.get(this.baseUrl + '/api/user/' + userId)
+      .map((res: Response) => {
+        return res.json();
+      });
   }
 
   findUserByUsername(username: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username) {
-         return this.users[x];
-       }
-    }
+    return this._http.get(this.baseUrl + '/api/user?username=' + username)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  findUserByCredentials(username: String, password: String) {
+    return this._http.get(this.baseUrl + '/api/user?username=' + username + '&password=' + password)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   updateUser(userId, user) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
-        this.users[x].firstName = user.firstName;
-        this.users[x].lastName = user.lastName;
-        this.users[x].username = user.username;
-        this.users[x].password = user.password;
-        this.users[x].email = user.email;
-        return this.users[x];
-      }
-    }
+    return this._http.put(this.baseUrl + '/api/user/' + userId, user)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   deleteUser(userId) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
-        delete this.users[x];
-      }
-    }
+    return this._http.delete(this.baseUrl + '/api/user/' + userId)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
   }
 }
 

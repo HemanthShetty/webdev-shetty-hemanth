@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 
 export class WebsiteListComponent implements OnInit {
 
-  userId : String;
+  userId: String;
   websites = [{}];
 
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute) { }
@@ -23,6 +23,13 @@ export class WebsiteListComponent implements OnInit {
         }
       );
 
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.websiteService.findWebsitesByUser(this.userId)
+      .subscribe(
+        (data: any) => {
+          this.websites = data;
+        },
+        (error: any) => {
+        }
+      );
   }
 }

@@ -21,18 +21,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   login(username: String, password: String) {
-    const user = this.userService.findUserByUsername(username);
-    if (user == null) {
-      this.notificationMessage = 'Please Enter a Valid User Name';
-      this.isInvalid = true ;
-    }
-    if (user.password === password) {
-      this.isInvalid = false;
-      this.router.navigate(['/user', user._id]);
-    } else {
-      this.notificationMessage = 'Please Enter a Valid Password';
-      this.isInvalid = true ;
-    }
+    this.userService.findUserByCredentials(this.username, this.password)
+      .subscribe(
+        (data: any) => {
+          if ( data == null) {
+            this.notificationMessage = 'Please Enter a Valid User Name and Password';
+            this.isInvalid = true ;
+          } else {
+            this.isInvalid = false;
+            this.router.navigate(['/user', data._id]);
+          }
+             } ,
+        (error: any) => {
+          this.notificationMessage = 'Please Enter a Valid User Name and Password';
+          this.isInvalid = true ;
+        });
   }
   register() {
     this.router.navigate(['/register']);

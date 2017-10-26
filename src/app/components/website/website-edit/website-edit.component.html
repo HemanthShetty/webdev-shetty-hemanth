@@ -56,8 +56,8 @@
           </span>
         </div>
         <div class="form-group">
-          <label for="websiteDesc">Description</label>
-          <textarea id="websiteDesc" name="websiteDescription" class="form-control" name="textarea" rows="5" [(ngModel)]=this.website.description ngModel="" #websiteDescription="ngModel" required></textarea>
+          <label for="websiteDescription">Description</label>
+          <textarea id="websiteDescription" name="websiteDescription" class="form-control" name="textarea" rows="5"  #websiteDescription="ngModel" [(ngModel)]=this.website.description required></textarea>
           <span class="help-block"
                 *ngIf="!websiteDescription.valid && websiteDescription.touched">
             You need to enter some description for the website!!

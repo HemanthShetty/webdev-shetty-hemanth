@@ -35,13 +35,22 @@ export class RegisterComponent implements OnInit {
       this.user.firstName = this.registrationForm.value.firstName;
       this.user.lastName = this.registrationForm.value.lastName;
       this.user.email = this.registrationForm.value.email;
-      const user = this.userService.createUser(this.user);
-      if (user) {
-        this.router.navigate(['/user', user._id]);
-      } else {
-        this.errorFlag = true;
-        this.errorMsg = 'Failed to create the user';
-      }
+      this.userService.createUser(this.user)
+        .subscribe(
+          (data: any) => {
+             this.user = data;
+            if (this.user) {
+              this.router.navigate(['/user', this.user._id]);
+            } else {
+              this.errorFlag = true;
+              this.errorMsg = 'Failed to create the user';
+            }
+            },
+          (error: any) => {
+            this.errorFlag = true;
+            this.errorMsg = 'Please enter the correct values';
+          }
+        );
     } else {
       this.errorFlag = true;
       this.errorMsg = 'Please enter the correct values';

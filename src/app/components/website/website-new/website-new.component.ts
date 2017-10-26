@@ -28,15 +28,30 @@ export class WebsiteNewComponent implements OnInit {
         }
       );
 
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.websiteService.findWebsitesByUser(this.userId)
+      .subscribe(
+        (data: any) => {
+          this.websites = data;
+        },
+        (error: any) => {
+        }
+      );
     this.websiteDetails = new Website('', '' , '' , '' );
   }
   createWebsite() {
     if (this.websiteForm.valid) {
       this.websiteDetails.name = this.websiteForm.value.websiteName;
       this.websiteDetails.description = this.websiteForm.value.websiteDescription;
-      this.websiteService.createWebsite(this.userId, this.websiteDetails);
-      this.router.navigate(['/user', this.userId , 'website' ]);
+      this.websiteService.createWebsite(this.userId, this.websiteDetails)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', this.userId , 'website' ]);
+          },
+          (error: any) => {
+            this.errorMsg = 'Please Enter The Correct Values';
+            this.errorFlag = true ;
+          }
+        );
     } else {
       this.errorMsg = 'Please Enter The Correct Values';
       this.errorFlag = true ;
