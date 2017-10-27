@@ -37,11 +37,11 @@ export class WidgetImageComponent implements OnInit {
             (data: any) => {
               if ( data != null) {
                 this.widgetEdit = true;
-                this.nameImage = this.widget['name'];
-                this.textImage = this.widget['text'];
-                this.urlImage = this.widget['url'];
-                this.widthImage = this.widget['width'];
-                this.uploadImage = this.widget['upload'];
+                this.nameImage = data['name'];
+                this.textImage = data['text'];
+                this.urlImage = data['url'];
+                this.widthImage = data['width'];
+                this.uploadImage = data['upload'];
               }
             },
             (error: any) => {

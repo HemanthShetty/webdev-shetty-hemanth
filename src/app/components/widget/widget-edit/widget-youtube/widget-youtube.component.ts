@@ -36,10 +36,10 @@ export class WidgetYoutubeComponent implements OnInit {
             (data: any) => {
               if ( data != null) {
                 this.widgetEdit = true;
-                this.nameYoutube = this.widget['name'];
-                this.textYoutube = this.widget['text'];
-                this.urlYoutube = this.widget['url'];
-                this.widthYoutube = this.widget['width'];
+                this.nameYoutube = data['name'];
+                this.textYoutube = data['text'];
+                this.urlYoutube = data['url'];
+                this.widthYoutube = data['width'];
               }
             },
             (error: any) => {
