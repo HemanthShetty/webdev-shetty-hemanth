@@ -35,6 +35,19 @@ export class WidgetHeaderComponent implements OnInit {
         this.widgetEdit = true;
         this.textHeader = this.widget['text'];
         this.sizeHeader = this.widget['size'];
+        this.widgetService.findWidgetById(this.widgetId)
+          .subscribe(
+            (data: any) => {
+              if ( data != null) {
+                this.widget = data;
+                this.widgetEdit = true;
+                this.textHeader = this.widget['text'];
+                this.sizeHeader = this.widget['size'];
+              }
+            },
+            (error: any) => {
+            }
+          );
       }
     });
   }
@@ -57,11 +70,25 @@ export class WidgetHeaderComponent implements OnInit {
     this.widget['widgetType'] = 'HEADING';
     this.widget['text'] = this.textHeader;
     this.widget['size'] = this.sizeHeader;
-    this.widgetService.updateWidget(this.widgetId, this.widget);
+    this.widgetService.updateWidget(this.widgetId, this.widget)
+      .subscribe(
+        (data: any) => {
+
+        },
+        (error: any) => {
+        }
+      );
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widgetId);
+    this.widgetService.deleteWidget(this.widgetId)
+      .subscribe(
+        (data: any) => {
+
+        },
+        (error: any) => {
+        }
+      );
   }
 
 }
