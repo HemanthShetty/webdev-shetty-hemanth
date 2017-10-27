@@ -32,13 +32,21 @@ export class WidgetImageComponent implements OnInit {
       this.pageId = params['pid'];
       this.widgetId = params['wgid'];
       if (this.widgetId) {
-        this.widget = this.widgetService.findWidgetById(this.widgetId);
-        this.widgetEdit = true;
-        this.nameImage = this.widget['name'];
-        this.textImage = this.widget['text'];
-        this.urlImage = this.widget['url'];
-        this.widthImage = this.widget['width'];
-        this.uploadImage = this.widget['upload'];
+        this.widgetService.findWidgetById(this.widgetId)
+          .subscribe(
+            (data: any) => {
+              if ( data != null) {
+                this.widgetEdit = true;
+                this.nameImage = this.widget['name'];
+                this.textImage = this.widget['text'];
+                this.urlImage = this.widget['url'];
+                this.widthImage = this.widget['width'];
+                this.uploadImage = this.widget['upload'];
+              }
+            },
+            (error: any) => {
+            }
+          );
       }
     });
   }
@@ -50,7 +58,14 @@ export class WidgetImageComponent implements OnInit {
     this.widget['width'] = this.widthImage;
     this.widget['upload'] = this.uploadImage;
     this.widget['name'] = this.nameImage;
-    this.widgetService.createWidget(this.pageId, this.widget);
+    this.widget['pageId'] = this.pageId;
+    this.widgetService.createWidget(this.pageId, this.widget)
+      .subscribe(
+        (data: any) => {
+        },
+        (error: any) => {
+        }
+      );
   }
 
   updateWidget() {
@@ -60,11 +75,25 @@ export class WidgetImageComponent implements OnInit {
     this.widget['width'] = this.widthImage;
     this.widget['upload'] = this.uploadImage;
     this.widget['name'] = this.nameImage;
-    this.widgetService.updateWidget(this.widgetId, this.widget);
+    this.widgetService.updateWidget(this.widgetId, this.widget)
+      .subscribe(
+        (data: any) => {
+
+        },
+        (error: any) => {
+        }
+      );
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widgetId);
+    this.widgetService.deleteWidget(this.widgetId)
+      .subscribe(
+        (data: any) => {
+
+        },
+        (error: any) => {
+        }
+      );
   }
 
 }

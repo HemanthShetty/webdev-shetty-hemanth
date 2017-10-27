@@ -58,7 +58,23 @@ module.exports = function(app) {
     widget = req.body;
     for (var i ; i < widgets.length ; i++ ) {
       if (widgets[i]._id === widgetId) {
-        widgets[i] = widget;
+        switch (widget['widgetType']) {
+          case 'HEADING':
+            this.widgets[x]['size'] = widget['size'];
+            this.widgets[x]['text'] = widget['text'];
+            break;
+          case 'IMAGE':
+            this.widgets[x]['width'] = widget['width'];
+            this.widgets[x]['url'] = widget['url'];
+            break;
+          case 'YOUTUBE':
+            this.widgets[x]['width'] = widget['width'];
+            this.widgets[x]['url'] = widget['url'];
+            break;
+          case 'HTML':
+            this.widgets[x]['text'] = widget['text'];
+            break;
+        }
         res.json({success:true});
         return;
       }

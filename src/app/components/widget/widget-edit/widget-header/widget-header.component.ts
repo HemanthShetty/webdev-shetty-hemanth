@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WidgetService} from '../../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-widget-header',
@@ -19,7 +19,7 @@ export class WidgetHeaderComponent implements OnInit {
   widget = {};
 
   constructor(private widgetService: WidgetService,
-              private activatedRoutes: ActivatedRoute) {
+              private activatedRoutes: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -31,10 +31,6 @@ export class WidgetHeaderComponent implements OnInit {
       this.sizeHeader = '2';
       this.widgetId = params['wgid'];
       if (this.widgetId) {
-        this.widget = this.widgetService.findWidgetById(this.widgetId);
-        this.widgetEdit = true;
-        this.textHeader = this.widget['text'];
-        this.sizeHeader = this.widget['size'];
         this.widgetService.findWidgetById(this.widgetId)
           .subscribe(
             (data: any) => {
@@ -56,10 +52,11 @@ export class WidgetHeaderComponent implements OnInit {
     this.widget['widgetType'] = 'HEADING';
     this.widget['text'] = this.textHeader;
     this.widget['size'] = this.sizeHeader;
+    this.widget['pageId'] = this.pageId;
     this.widgetService.createWidget(this.pageId, this.widget)
       .subscribe(
         (data: any) => {
-
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
         },
         (error: any) => {
         }
