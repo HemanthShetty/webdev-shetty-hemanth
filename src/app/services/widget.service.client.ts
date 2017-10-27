@@ -42,42 +42,23 @@ export class WidgetService {
   }
 
   findWidgetById(widgetId) {
-    return this.widgets.find(function (widget) {
-      return widget['_id'] === widgetId;
-    });
+    return this._http.get(this.baseUrl + '/api/widget/' + widgetId)
+      .map(function (res) {
+        return res.json();
+      });
   }
 
   updateWidget(widgetId, widget) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]['_id'] === widgetId) {
-        switch (widget['type']) {
-          case 'HEADING':
-            this.widgets[x]['size'] = widget['size'];
-            this.widgets[x]['text'] = widget['text'];
-            break;
-          case 'IMAGE':
-            this.widgets[x]['width'] = widget['width'];
-            this.widgets[x]['url'] = widget['url'];
-            break;
-          case 'YOUTUBE':
-            this.widgets[x]['width'] = widget['width'];
-            this.widgets[x]['url'] = widget['url'];
-            break;
-          case 'HTML':
-            this.widgets[x]['text'] = widget['text'];
-            break;
-        }
-        this.widgets[x]['_id'] = widgetId;
-        return this.widgets[x];
-      }
+    return this._http.put(this.baseUrl + '/api/widget/' + widgetId, widget)
+      .map(function (res) {
+        return res.json();
+      });
     }
-  }
 
   deleteWidget(widgetId) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]['_id'] === widgetId) {
-        delete this.widgets[x];
-      }
-    }
+    return this._http.delete(this.baseUrl + '/api/widget/' + widgetId)
+      .map(function (res) {
+        return res.json();
+      });
   }
 }
