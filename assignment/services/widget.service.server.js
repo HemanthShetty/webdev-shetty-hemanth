@@ -56,23 +56,23 @@ module.exports = function(app) {
   function updateWidget(req, res) {
     widgetId = req.params['widgetId'];
     widget = req.body;
-    for (var i ; i < widgets.length ; i++ ) {
+    for (var i=0 ; i < widgets.length ; i++ ) {
       if (widgets[i]._id === widgetId) {
         switch (widget['widgetType']) {
           case 'HEADING':
-            this.widgets[x]['size'] = widget['size'];
-            this.widgets[x]['text'] = widget['text'];
+            this.widgets[i]['size'] = widget['size'];
+            this.widgets[i]['text'] = widget['text'];
             break;
           case 'IMAGE':
-            this.widgets[x]['width'] = widget['width'];
-            this.widgets[x]['url'] = widget['url'];
+            this.widgets[i]['width'] = widget['width'];
+            this.widgets[i]['url'] = widget['url'];
             break;
           case 'YOUTUBE':
-            this.widgets[x]['width'] = widget['width'];
-            this.widgets[x]['url'] = widget['url'];
+            this.widgets[i]['width'] = widget['width'];
+            this.widgets[i]['url'] = widget['url'];
             break;
           case 'HTML':
-            this.widgets[x]['text'] = widget['text'];
+            this.widgets[i]['text'] = widget['text'];
             break;
         }
         res.json({success:true});
