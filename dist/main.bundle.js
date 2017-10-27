@@ -1944,7 +1944,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Header-->\n<nav class=\"navbar navbar-default navbar-fixed-top widget-navbar-header\">\n  <div class=\"container-fluid\">\n\n\n    <p class=\"navbar-text pull-left\">\n      <a [routerLink]= \" [ 'user',userId,'website',websiteId,'page']\" class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </a>\n    </p>\n\n\n\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b>Widgets</b>\n      </a>\n    </p>\n\n\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']\" class=\"glyphicon glyphicon-plus\"></a>\n    </p>\n\n\n\n\n  </div>\n</nav>\n<!--Header end-->\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <ul class=\"list-group\">\n      <div *ngFor=\"let widget of widgetList\">\n\n        <div [ngSwitch]=\"widget.widgetType\">\n\n          <div *ngSwitchCase=\"'HEADING'\">\n            <li class=\"list-group-item widget-list\">\n              <div class=\"container-fluid\">\n                <div [ngSwitch]=\"widget['size']\">\n                  <div *ngSwitchCase=\"1\">\n                    <h1>{{widget['text']}}</h1>\n                  </div>\n                  <div *ngSwitchCase=\"2\">\n                    <h2>{{widget['text']}}</h2>\n                  </div>\n                  <div *ngSwitchCase=\"3\">\n                    <h3>{{widget['text']}}</h3>\n                  </div>\n                  <div *ngSwitchCase=\"4\">\n                    <h4>{{widget['text']}}</h4>\n                  </div>\n                  <div *ngSwitchCase=\"5\">\n                    <h5>{{widget['text']}}</h5>\n                  </div>\n                  <div *ngSwitchCase=\"6\">\n                    <h6>{{widget['text']}}</h6>\n                  </div>\n                </div>\n                <div class=\"hsm-wdv-toolbar\">\n                  <a class=\"glyphicon glyphicon-align-justify widget-option pull-right color-black\"></a>\n                  <a class=\"glyphicon glyphicon-cog pull-right widget-option color-blue\"\n                     routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/1/{{widget['_id']}}\"></a>\n                </div>\n              </div>\n            </li>\n          </div>\n\n          <div *ngSwitchCase=\"'IMAGE'\">\n            <li class=\"list-group-item widget-list\">\n              <div class=\"container-fluid\">\n                <img class=\"image widget-image\" [src]=\"widget['url']\" [style.width]=\"widget['width'] + '%'\">\n                <div class=\"hsm-wdv-toolbar\">\n                  <a class=\"glyphicon glyphicon-align-justify widget-option pull-right color-black\"></a>\n                  <a class=\"glyphicon glyphicon-cog pull-right widget-option color-blue\"\n                     routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/2/{{widget['_id']}}\"></a>\n                </div>\n              </div>\n            </li>\n          </div>\n\n          <div *ngSwitchCase=\"'YOUTUBE'\">\n            <li class=\"list-group-item widget-list\">\n              <div class=\"container-fluid\">\n                <div class=\"hsm-wdv-toolbar\">\n                  <a class=\"glyphicon glyphicon-align-justify widget-option pull-right color-black\"></a>\n                  <a class=\"glyphicon glyphicon-cog pull-right widget-option color-blue\"\n                     routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/3/{{widget['_id']}}\"></a>\n                </div>\n                <iframe class=\"video-frame\" [style.width]=\"widget['width'] + '%'\" [src]=\"sanitizedURL(widget['url'])\" frameborder=\"0\" allowfullscreen></iframe>\n              </div>\n            </li>\n          </div>\n\n          <div *ngSwitchCase=\"'HTML'\">\n            <li class=\"list-group-item widget-list\">\n              <div class=\"container-fluid\">\n                <div class=\"hsm-wdv-toolbar\">\n                  <a class=\"glyphicon glyphicon-align-justify widget-option pull-right color-black\"></a>\n                  <a class=\"glyphicon glyphicon-cog pull-right widget-option color-blue\"\n                     routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/4/{{widget['_id']}}\"></a>\n                </div>\n                <div [innerHtml]=\"widget['text']\"></div>\n              </div>\n            </li>\n          </div>\n        </div>\n\n      </div>\n    </ul>\n  </div>\n</div>\n\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom widget-navbar-footer\">\n  <div class=\"container-fluid\">\n\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n<!--footer end-->\n"
+module.exports = "<!--Header-->\n<nav class=\"navbar navbar-default navbar-fixed-top widget-navbar-header\">\n  <div class=\"container-fluid\">\n\n\n    <p class=\"navbar-text pull-left\">\n      <a [routerLink]= \" [ 'user',userId,'website',websiteId,'page']\" class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </a>\n    </p>\n\n\n\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b>Widgets</b>\n      </a>\n    </p>\n\n\n    <p class=\"navbar-text pull-right\">\n      <a [routerLink]=\"['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']\" class=\"glyphicon glyphicon-plus\"></a>\n    </p>\n\n\n\n\n  </div>\n</nav>\n<!--Header end-->\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <ul class=\"list-group\">\n      <div *ngFor=\"let widget of widgetList\">\n\n        <div [ngSwitch]=\"widget.widgetType\">\n\n          <div *ngSwitchCase=\"'HEADING'\">\n            <li class=\"list-group-item\">\n              <div class=\"container-fluid\">\n                <div class=\"hsm-wdv-toolbar\">\n                  <a routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/1/{{widget['_id']}}\">\n                    <span class=\"glyphicon glyphicon-cog\"></span>\n                  </a>\n                  <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n                </div>\n                <div [ngSwitch]=\"widget['size']\">\n                  <div *ngSwitchCase=\"1\">\n                    <h1>{{widget['text']}}</h1>\n                  </div>\n                  <div *ngSwitchCase=\"2\">\n                    <h2>{{widget['text']}}</h2>\n                  </div>\n                  <div *ngSwitchCase=\"3\">\n                    <h3>{{widget['text']}}</h3>\n                  </div>\n                  <div *ngSwitchCase=\"4\">\n                    <h4>{{widget['text']}}</h4>\n                  </div>\n                  <div *ngSwitchCase=\"5\">\n                    <h5>{{widget['text']}}</h5>\n                  </div>\n                  <div *ngSwitchCase=\"6\">\n                    <h6>{{widget['text']}}</h6>\n                  </div>\n                </div>\n              </div>\n            </li>\n          </div>\n\n          <div *ngSwitchCase=\"'IMAGE'\">\n            <li class=\"list-group-item\">\n              <div class=\"container-fluid\">\n                <div class=\"hsm-wdv-toolbar\">\n                  <a routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/2/{{widget['_id']}}\">\n                    <span class=\"glyphicon glyphicon-cog\"></span>\n                  </a>\n                  <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n                </div>\n                <img class=\"image widget-image\" [src]=\"widget['url']\" [style.width]=\"widget['width'] + '%'\">\n              </div>\n            </li>\n          </div>\n\n          <div *ngSwitchCase=\"'YOUTUBE'\">\n            <li class=\"list-group-item widget-list\">\n              <div class=\"container-fluid\">\n                <div class=\"hsm-wdv-toolbar\">\n                  <a routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/3/{{widget['_id']}}\">\n                    <span class=\"glyphicon glyphicon-cog\"></span>\n                  </a>\n                  <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n                </div>\n                <iframe class=\"video-frame\" [style.width]=\"widget['width'] + '%'\" [src]=\"sanitizedURL(widget['url'])\" frameborder=\"0\" allowfullscreen></iframe>\n              </div>\n            </li>\n          </div>\n\n          <div *ngSwitchCase=\"'HTML'\">\n            <li class=\"list-group-item widget-list\">\n              <div class=\"container-fluid\">\n                <div class=\"hsm-wdv-toolbar\">\n                  <a class=\"glyphicon glyphicon-align-justify widget-option pull-right color-black\"></a>\n                  <a class=\"glyphicon glyphicon-cog pull-right widget-option color-blue\"\n                     routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/4/{{widget['_id']}}\"></a>\n                </div>\n                <div [innerHtml]=\"widget['text']\"></div>\n              </div>\n            </li>\n          </div>\n        </div>\n\n      </div>\n    </ul>\n  </div>\n</div>\n\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom widget-navbar-footer\">\n  <div class=\"container-fluid\">\n\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n<!--footer end-->\n"
 
 /***/ }),
 
@@ -1984,7 +1984,11 @@ var WidgetListComponent = (function () {
             _this.websiteId = params['wid'];
             _this.pageId = params['pid'];
         });
-        this.widgetList = this.widgetService.findWidgetsByPageId(this.pageId);
+        this.widgetService.findWidgetsByPageId(this.pageId)
+            .subscribe(function (data) {
+            _this.widgetList = data;
+        }, function (error) {
+        });
     };
     WidgetListComponent.prototype.sanitizedURL = function (url) {
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -2091,7 +2095,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var PageService = (function () {
     function PageService(_http) {
         this._http = _http;
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl || 'localhost:3100';
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
     PageService.prototype.createPage = function (websiteId, page) {
         return this._http.post(this.baseUrl + '/api/website/' + websiteId + '/page', page)
@@ -2227,7 +2231,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = (function () {
     function UserService(_http) {
         this._http = _http;
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl || 'localhost:3100';
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
         this.api = {
             'createUser': this.createUser,
             'findUserById': this.findUserById
@@ -2307,7 +2311,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var WebsiteService = (function () {
     function WebsiteService(_http) {
         this._http = _http;
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl || 'localhost:3100';
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
     WebsiteService.prototype.createWebsite = function (userId, website) {
         return this._http.post(this.baseUrl + '/api/user/' + userId + '/website', website)
@@ -2358,6 +2362,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2370,9 +2376,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 // injecting service into module
 var WidgetService = (function () {
-    function WidgetService() {
+    function WidgetService(_http) {
+        this._http = _http;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].baseUrl;
         this.widgets = [
             { '_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
             { '_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
@@ -2396,8 +2406,9 @@ var WidgetService = (function () {
         return widget;
     };
     WidgetService.prototype.findWidgetsByPageId = function (pageId) {
-        return this.widgets.filter(function (widget) {
-            return widget['pageId'] === pageId;
+        return this._http.get(this.baseUrl + '/api/page/' + pageId + '/widget')
+            .map(function (res) {
+            return res.json();
         });
     };
     WidgetService.prototype.findWidgetById = function (widgetId) {
@@ -2441,9 +2452,10 @@ var WidgetService = (function () {
 }());
 WidgetService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], WidgetService);
 
+var _a;
 //# sourceMappingURL=widget.service.client.js.map
 
 /***/ }),
@@ -2460,8 +2472,8 @@ WidgetService = __decorate([
 // The file contents for the current environment will overwrite these during build.
 var environment = {
     production: false,
-    //baseUrl : 'http://localhost:3100'
-    baseUrl: 'https://webdev-shetty-hemanth.herokuapp.com'
+    baseUrl: 'http://localhost:3100'
+    // baseUrl: 'https://webdev-shetty-hemanth.herokuapp.com'
 };
 //# sourceMappingURL=environment.js.map
 

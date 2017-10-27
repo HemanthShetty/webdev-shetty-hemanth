@@ -16,8 +16,6 @@ module.exports = function(app) {
     {'_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
   ];
 
-  baseUrl = environment.baseUrl;
-
   app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
 
 

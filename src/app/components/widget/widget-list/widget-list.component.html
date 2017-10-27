@@ -36,8 +36,14 @@
         <div [ngSwitch]="widget.widgetType">
 
           <div *ngSwitchCase="'HEADING'">
-            <li class="list-group-item widget-list">
+            <li class="list-group-item">
               <div class="container-fluid">
+                <div class="hsm-wdv-toolbar">
+                  <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/1/{{widget['_id']}}">
+                    <span class="glyphicon glyphicon-cog"></span>
+                  </a>
+                  <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </div>
                 <div [ngSwitch]="widget['size']">
                   <div *ngSwitchCase="1">
                     <h1>{{widget['text']}}</h1>
@@ -58,24 +64,20 @@
                     <h6>{{widget['text']}}</h6>
                   </div>
                 </div>
-                <div class="hsm-wdv-toolbar">
-                  <a class="glyphicon glyphicon-align-justify widget-option pull-right color-black"></a>
-                  <a class="glyphicon glyphicon-cog pull-right widget-option color-blue"
-                     routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/1/{{widget['_id']}}"></a>
-                </div>
               </div>
             </li>
           </div>
 
           <div *ngSwitchCase="'IMAGE'">
-            <li class="list-group-item widget-list">
+            <li class="list-group-item">
               <div class="container-fluid">
-                <img class="image widget-image" [src]="widget['url']" [style.width]="widget['width'] + '%'">
                 <div class="hsm-wdv-toolbar">
-                  <a class="glyphicon glyphicon-align-justify widget-option pull-right color-black"></a>
-                  <a class="glyphicon glyphicon-cog pull-right widget-option color-blue"
-                     routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/2/{{widget['_id']}}"></a>
+                  <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/2/{{widget['_id']}}">
+                    <span class="glyphicon glyphicon-cog"></span>
+                  </a>
+                  <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
+                <img class="image widget-image" [src]="widget['url']" [style.width]="widget['width'] + '%'">
               </div>
             </li>
           </div>
@@ -84,9 +86,10 @@
             <li class="list-group-item widget-list">
               <div class="container-fluid">
                 <div class="hsm-wdv-toolbar">
-                  <a class="glyphicon glyphicon-align-justify widget-option pull-right color-black"></a>
-                  <a class="glyphicon glyphicon-cog pull-right widget-option color-blue"
-                     routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/3/{{widget['_id']}}"></a>
+                  <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/3/{{widget['_id']}}">
+                    <span class="glyphicon glyphicon-cog"></span>
+                  </a>
+                  <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
                 <iframe class="video-frame" [style.width]="widget['width'] + '%'" [src]="sanitizedURL(widget['url'])" frameborder="0" allowfullscreen></iframe>
               </div>
