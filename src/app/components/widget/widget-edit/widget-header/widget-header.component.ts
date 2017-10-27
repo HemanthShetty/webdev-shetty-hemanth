@@ -70,7 +70,7 @@ export class WidgetHeaderComponent implements OnInit {
     this.widgetService.updateWidget(this.widgetId, this.widget)
       .subscribe(
         (data: any) => {
-
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
         },
         (error: any) => {
         }
@@ -81,7 +81,7 @@ export class WidgetHeaderComponent implements OnInit {
     this.widgetService.deleteWidget(this.widgetId)
       .subscribe(
         (data: any) => {
-
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
         },
         (error: any) => {
         }
