@@ -43,7 +43,14 @@ export class WidgetHeaderComponent implements OnInit {
     this.widget['widgetType'] = 'HEADING';
     this.widget['text'] = this.textHeader;
     this.widget['size'] = this.sizeHeader;
-    this.widgetService.createWidget(this.pageId, this.widget);
+    this.widgetService.createWidget(this.pageId, this.widget)
+      .subscribe(
+        (data: any) => {
+
+        },
+        (error: any) => {
+        }
+      );
   }
 
   updateWidget() {

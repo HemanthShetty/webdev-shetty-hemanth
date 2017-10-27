@@ -27,10 +27,10 @@ export class WidgetService {
   ];
 
   createWidget(pageId, widget) {
-    widget['_id'] = Math.floor(Math.random() * 1000) + '';
-    widget['pageId'] = pageId;
-    this.widgets.push(widget);
-    return widget;
+    return this._http.post(this.baseUrl + '/api/page/' + pageId + '/widget', widget)
+      .map(function (res) {
+        return res.json();
+      });
   }
 
   findWidgetsByPageId(pageId) {

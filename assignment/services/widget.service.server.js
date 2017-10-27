@@ -17,7 +17,10 @@ module.exports = function(app) {
   ];
 
   app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
-
+  app.post('/api/page/:pageId/widget', createWidget);
+  app.get('/api/widget/:widgetId', findWidgetById);
+  app.put('/api/widget/:widgetId', updateWidget);
+  app.delete('/api/widget/:widgetId', deleteWidget);
 
   function findAllWidgetsForPage(req, res) {
     pageId = req.params['pageId'];
@@ -29,6 +32,53 @@ module.exports = function(app) {
     }
     res.json(pageWidgets);
   }
+
+  function createWidget(req, res) {
+    widget = req.body;
+    var randomNumber = String(Math.floor(Math.random() * 100));
+    widget._id =  new Date().getMilliseconds().toString() + randomNumber;
+    widgets.push(widget);
+    res.json(widget);
+  }
+
+  function findWidgetById(req, res) {
+    widgetId = req.params['widgetId'];
+    for (var i=0 ; i < widgets.length ; i++ ) {
+      if (widgets[i]._id === widgetId) {
+        res.json(widgets[i]);
+        return;
+      }
+    }
+    return res.json(null);
+  }
+
+
+  function updateWidget(req, res) {
+    widgetId = req.params['widgetId'];
+    widget = req.body;
+    for (var i ; i < widgets.length ; i++ ) {
+      if (widgets[i]._id === widgetId) {
+        widgets[i] = widget;
+        res.json({success:true});
+        return;
+      }
+    }
+    res.json(null);
+  }
+
+  function deleteWidget(req, res) {
+    widgetId = req.params['widgetId'];
+    for(var w in widgets) {
+      if (widgets[w]._id === widgetId) {
+        widgets.splice(w, 1);
+        res.json({success:true})
+        return;
+      }
+    }
+    res.json(null);
+  }
+
+
 
 
 
