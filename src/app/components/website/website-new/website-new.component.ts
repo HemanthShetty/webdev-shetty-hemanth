@@ -42,6 +42,7 @@ export class WebsiteNewComponent implements OnInit {
     if (this.websiteForm.valid) {
       this.websiteDetails.name = this.websiteForm.value.websiteName;
       this.websiteDetails.description = this.websiteForm.value.websiteDescription;
+      delete this.websiteDetails._id;
       this.websiteService.createWebsite(this.userId, this.websiteDetails)
         .subscribe(
           (data: any) => {

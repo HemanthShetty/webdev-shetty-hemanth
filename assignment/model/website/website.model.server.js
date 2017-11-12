@@ -15,7 +15,7 @@ WebsiteModel.deleteWebsite = deleteWebsite;
 module.exports = WebsiteModel;
 
 
-function createWebsiteForUser(userId, website) {
+function createWebsiteForUser(website) {
   return WebsiteModel.create(website);
 }
 

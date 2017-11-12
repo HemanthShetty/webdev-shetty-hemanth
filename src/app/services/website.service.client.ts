@@ -14,7 +14,7 @@ export class WebsiteService {
 
   baseUrl = environment.baseUrl;
 
-  createWebsite(userId, website) {
+  createWebsite(userId, website: Website) {
     return this._http.post(this.baseUrl + '/api/user/' + userId + '/website', website)
       .map((res: Response) => {
           return res.json();

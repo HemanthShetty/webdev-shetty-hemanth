@@ -61,6 +61,7 @@ export class WebsiteEditComponent implements OnInit {
     if (this.websiteForm.valid) {
       this.websiteDetails.name = this.websiteForm.value.websiteName;
       this.websiteDetails.description = this.websiteForm.value.websiteDescription;
+      this.websiteDetails.developerId = this.userId.toString();
       this.websiteService.updateWebsite(this.websiteId, this.websiteDetails)
         .subscribe(
           (data: any) => {
