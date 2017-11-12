@@ -19,7 +19,14 @@ export class UserService {
   };
 
   createUser(user: any) {
-    return this._http.post(this.baseUrl + '/api/user', user)
+    const userDetails = {
+            username: user.username,
+            password: user.password,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email
+    };
+    return this._http.post(this.baseUrl + '/api/user', userDetails)
       .map((res: Response) => {
           return res.json();
         }

@@ -3,6 +3,7 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import {Website} from '../models/website.model.client';
 
 
 @Injectable()
@@ -39,7 +40,7 @@ export class WebsiteService {
       );
   }
 
-  updateWebsite(websiteId, website) {
+  updateWebsite(websiteId, website: Website) {
     return this._http.put(this.baseUrl + '/api/website/' + websiteId, website)
       .map((res: Response) => {
           return res.json();
