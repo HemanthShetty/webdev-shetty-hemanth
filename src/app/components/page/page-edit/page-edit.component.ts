@@ -60,6 +60,7 @@ export class PageEditComponent implements OnInit {
     if (this.websiteForm.valid) {
       this.updatedPageDetails.name = this.websiteForm.value.pageName;
       this.updatedPageDetails.description = this.websiteForm.value.pageDescription;
+      this.updatedPageDetails.websiteId = this.websiteId.toString();
       this.pageService.updatePage(this.pageId, this.updatedPageDetails)
         .subscribe(
           (data: any) => {

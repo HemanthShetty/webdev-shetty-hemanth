@@ -44,6 +44,7 @@ export class PageNewComponent implements OnInit {
       this.pageDetails.name = this.websiteForm.value.pageName;
       this.pageDetails.description = this.websiteForm.value.pageDescription;
       this.pageDetails.websiteId = this.websiteId.toString();
+      delete this.pageDetails._id;
       this.pageService.createPage(this.websiteId, this.pageDetails)
         .subscribe(
           (data: any) => {
