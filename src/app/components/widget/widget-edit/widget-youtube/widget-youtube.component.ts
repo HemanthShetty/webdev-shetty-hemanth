@@ -72,6 +72,7 @@ export class WidgetYoutubeComponent implements OnInit {
     this.widget['text'] = this.textYoutube;
     this.widget['url'] = this.urlYoutube;
     this.widget['width'] = this.widthYoutube;
+    this.widget['pageId'] = this.pageId;
     this.widgetService.updateWidget(this.widgetId, this.widget)
       .subscribe(
         (data: any) => {

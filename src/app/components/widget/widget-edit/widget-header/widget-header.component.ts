@@ -67,6 +67,7 @@ export class WidgetHeaderComponent implements OnInit {
     this.widget['widgetType'] = 'HEADING';
     this.widget['text'] = this.textHeader;
     this.widget['size'] = this.sizeHeader;
+    this.widget['pageId'] = this.pageId;
     this.widgetService.updateWidget(this.widgetId, this.widget)
       .subscribe(
         (data: any) => {

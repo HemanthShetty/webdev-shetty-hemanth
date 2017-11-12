@@ -10,6 +10,6 @@ var WebsiteSchema = mongoose.Schema({
   name: String,
   description: String,
   dateCreated: {type: Date, default: Date.now}
-}, {collection: 'webdev.website'});
+}, {collection: 'website'});
 
 module.exports = WebsiteSchema;

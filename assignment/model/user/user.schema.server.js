@@ -18,6 +18,6 @@
       type: Date,
       default: Date.now()
     }
-  }, {collection: "users"});
+  }, {collection: "user"});
 
 module.exports=userSchema;

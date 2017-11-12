@@ -13,6 +13,6 @@ var PageSchema = mongoose.Schema({
   description: String,
   widgets: [widgetSchema],
   dateCreated: {type: Date, default: Date.now}
-}, {collection: 'webdev.page'});
+}, {collection: 'page'});
 
 module.exports = PageSchema;
