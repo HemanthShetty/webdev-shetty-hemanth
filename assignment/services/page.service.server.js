@@ -6,6 +6,7 @@ module.exports = function(app,model) {
   app.put('/api/page/:pageId', updatePage);
   app.delete('/api/page/:pageId', deletePage);
 
+
   function createPage(req, res) {
     var page = req.body;
     page.websiteId=req.params['websiteId'];
