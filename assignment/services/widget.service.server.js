@@ -75,10 +75,11 @@ module.exports = function(app,model) {
     var pageId = req.body.pageId;
     var width  = req.body.width;
 
-    var url = 'http://localhost:3100/uploads/' + filename;
+    var url = 'assets/uploads/' + filename;
     var domain = 'http://localhost:4200';
     if(process.env.MLAB_USERNAME_WEBDEV) {
-      url = process.env.URL_PROD+'/uploads/'+ filename;
+        console.log('here');
+        url = process.env.URL_PROD+'/uploads/'+ filename;
       domain =  process.env.URL_PROD;
     }
 
