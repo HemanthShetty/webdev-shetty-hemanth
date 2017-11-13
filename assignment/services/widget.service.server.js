@@ -8,7 +8,7 @@ module.exports = function(app,model) {
   app.get('/api/widget/:widgetId', findWidgetById);
   app.put('/api/widget/:widgetId', updateWidget);
   app.delete('/api/widget/:widgetId', deleteWidget);
-  app.post ("/api/upload", upload.single('myFile'), uploadImage);
+  app.post ("/api/upload", upload.single('uploadImage'), uploadImage);
 
 
 
@@ -69,10 +69,9 @@ module.exports = function(app,model) {
   function uploadImage(req,res) {
     var widgetId      = req.body.widgetId;
     var myFile        = req.file;
-    var originalname  = myFile.originalname;
     var filename      = myFile.filename;
     var userId = req.body.userId;
-    var websiteId = req.body.webId;
+    var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
     var width  = req.body.width;
 
@@ -83,17 +82,19 @@ module.exports = function(app,model) {
       domain =  process.env.URL_PROD;
     }
 
-    var w  = {"type":"IMAGE","pageId":pageId,
+    var w  = {"widgetType":"IMAGE","pageId":pageId,
       "size":"","text":"","width":width,"url":url};
 
+    console.log(JSON.stringify(w));
     if(widgetId === '') {
-      widgetModel.createWidget(w)
+      model.widgetModel.createWidget(w)
         .then(function (w) {
           widgetId = w._id;
         });
     }
     else{
-      widgetModel.updateWidget(widgetId,w)
+      w._id=widgetId;
+      model.widgetModel.updateWidget(w)
         .then(function (w) {
         });
     }
