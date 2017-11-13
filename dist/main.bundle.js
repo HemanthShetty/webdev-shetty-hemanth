@@ -2707,8 +2707,8 @@ var _a;
 // The file contents for the current environment will overwrite these during build.
 var environment = {
     production: false,
-    baseUrl: 'http://localhost:3100'
-    // baseUrl: 'https://webdev-shetty-hemanth.herokuapp.com'
+    // baseUrl : 'http://localhost:3100'
+    baseUrl: 'https://webdev-shetty-hemanth.herokuapp.com'
 };
 //# sourceMappingURL=environment.js.map
 
