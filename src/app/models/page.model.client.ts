@@ -3,7 +3,6 @@ export class Page {
   public name: string;
   public description: string;
   public websiteId: string;
-
   constructor(_id: string, name: string, description: string,
               websiteId: string) {
     this._id = _id;
