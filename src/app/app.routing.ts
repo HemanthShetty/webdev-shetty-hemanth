@@ -22,6 +22,7 @@ import {WidgetHeaderComponent} from './components/widget/widget-edit/widget-head
 import {WidgetImageComponent} from './components/widget/widget-edit/widget-image/widget-image.component';
 import {WidgetYoutubeComponent} from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
+import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component';
 
 
 
@@ -45,8 +46,8 @@ const APP_ROUTES: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid/widget/new/heading', component: WidgetHeaderComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new/image', component: WidgetImageComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/new/html', component: WidgetHtmlComponent}
-
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/html', component: WidgetHtmlComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/text', component: WidgetTextComponent}
 ];
 
 // Export the routes as module providers

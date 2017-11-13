@@ -29,6 +29,7 @@ import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 import { QuillEditorModule } from 'ngx-quill-editor';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
 
 
@@ -54,7 +55,8 @@ import { QuillEditorModule } from 'ngx-quill-editor';
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    WidgetHtmlComponent
+    WidgetHtmlComponent,
+    WidgetTextComponent
   ],
   imports: [
     BrowserModule,

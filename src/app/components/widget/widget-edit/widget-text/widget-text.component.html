@@ -1,0 +1,103 @@
+<div *ngIf="widgetEdit;then editWidget else newWidget"></div>
+<ng-template #editWidget>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!--tick mark-->
+      <div class="navbar-text pull-right right-margin-fix">
+        <a (click)="updateWidget()"
+           class="navbar-link">
+          <span class="glyphicon glyphicon-ok-sign"></span>
+        </a>
+      </div>
+      <!--tick mark-->
+      <div class="navbar-text pull-left left-margin-fix">
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"
+           class="navbar-link">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+      <!--heading on the nav bar-->
+      <p class="navbar-header pull-left">
+        <a class="navbar-brand ">
+          <b>Widget Edit</b>
+        </a>
+      </p>
+    </div>
+  </nav>
+</ng-template>
+<ng-template #newWidget>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!--tick mark-->
+      <div class="navbar-text pull-right right-margin-fix">
+        <a (click)="createWidget()"
+           class="navbar-link">
+          <span class="glyphicon glyphicon-ok-sign"></span>
+        </a>
+      </div>
+      <!--tick mark-->
+      <div class="navbar-text pull-left left-margin-fix">
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']"
+           class="navbar-link">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+      <!--heading on the nav bar-->
+      <p class="navbar-header pull-left">
+        <a class="navbar-brand ">
+          <b>New Widget</b>
+        </a>
+      </p>
+    </div>
+  </nav>
+</ng-template>
+
+<div class="body container-fluid">
+  <form>
+    Text
+    <input [(ngModel)]="text" name="text" class="form-control"/>
+
+    Rows
+    <input [(ngModel)]="rows"  name="rows" class="form-control" type="number"/>
+    <label for="Name">Name</label>
+    <div>
+      <input [(ngModel)]="name"
+             type="text"
+             class="form-control"
+             id="Name"
+             name="name"
+             placeholder="Name">
+    </div>
+
+    Placeholder
+    <input [(ngModel)]="placeholder" name="placeholder" class="form-control" required/>
+    <p></p>
+    <div class="input-group">
+      <input type="text"
+             readonly
+             value="Formatted"
+             class="form-control"/>
+      <span class="input-group-addon">
+     <input [(ngModel)]="formatted" name="formatted"
+            type="checkbox"/>
+ </span>
+    </div>
+
+
+
+
+    <a class="btn btn-danger btn-block "
+       (click)="deleteWidget()">Delete</a>
+
+  </form>
+</div>
+
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <p class="navbar-brand pull-right">
+    <a [routerLink]="['/user', userId]">
+      <span class="glyphicon glyphicon-user"></span>
+    </a>
+  </p>
+</nav>
