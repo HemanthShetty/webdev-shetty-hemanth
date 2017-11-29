@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../services/user.service.client';
 import {Router} from '@angular/router';
+import {SharedService} from "../../../services/shared.service.client";
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,13 @@ export class LoginComponent implements OnInit {
   isInvalid: boolean;
 
 
-  constructor(private userService: UserService,
+  constructor(private sharedService: SharedService, private userService: UserService,
               private router: Router) { }
 
   ngOnInit() {
   }
   login(username: String, password: String) {
-    this.userService.findUserByCredentials(this.username, this.password)
+    this.userService.login(this.username, this.password)
       .subscribe(
         (data: any) => {
           if ( data == null) {
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
             this.isInvalid = true ;
           } else {
             this.isInvalid = false;
+            this.sharedService.user = data;
             this.router.navigate(['/user', data._id]);
           }
              } ,

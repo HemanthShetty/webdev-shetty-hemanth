@@ -11,12 +11,38 @@ export class UserService {
 
   constructor(private _http: Http) { }
 
+  options: RequestOptions = new RequestOptions();
   baseUrl = environment.baseUrl;
 
   api = {
     'createUser'   : this.createUser,
     'findUserById' : this.findUserById
   };
+
+  register(username, password) {
+    this.options.withCredentials = true;
+    const credentials = {
+      username : username,
+      password : password,
+    };
+    return this._http.post(this.baseUrl + '/api/register', credentials, this.options)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
+  }
+  login(username, password) {
+    this.options.withCredentials = true;
+    const credentials = {
+      username : username,
+      password : password,
+    };
+    return this._http.post(this.baseUrl + '/api/login', credentials, this.options)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
+  }
 
   createUser(user: any) {
     const userDetails = {

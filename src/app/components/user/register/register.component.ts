@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service.client';
 import {Router} from '@angular/router';
 import {User} from '../../../models/user.model.client';
+import {SharedService} from "../../../services/shared.service.client";
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   errorFlag: Boolean;
   errorMsg: String;
 
-  constructor(private userService: UserService,
+  constructor(private sharedService: SharedService, private userService: UserService,
               private router: Router) {
   }
 
@@ -35,11 +36,11 @@ export class RegisterComponent implements OnInit {
       this.user.firstName = this.registrationForm.value.firstName;
       this.user.lastName = this.registrationForm.value.lastName;
       this.user.email = this.registrationForm.value.email;
-      this.userService.createUser(this.user)
+      this.userService.register(this.user.username, this.user.password)
         .subscribe(
           (data: any) => {
-             this.user = data;
             if (this.user) {
+              this.sharedService.user = data;
               this.router.navigate(['/user', this.user._id]);
             } else {
               this.errorFlag = true;
