@@ -4,6 +4,7 @@ import {UserService} from '../../../services/user.service.client';
 import {NgForm} from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {User} from '../../../models/user.model.client';
+import {SharedService} from '../../../services/shared.service.client';
 
 
 @Component({
@@ -17,11 +18,22 @@ export class ProfileComponent implements OnInit {
   user: User = new User('', '', '', '', '', '');
   notificationMessage: String;
   isInvalid: boolean;
+  userIdentity;
   @ViewChild('f') profileForm: NgForm;
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router,
+              private sharedService: SharedService) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => { this.userId = params['userId']; });
+    this.route.params.subscribe(params => {
+      this.userIdentity = this.sharedService.user;
+    });
+    if (this.userIdentity) {
+      this.user = new User(this.userIdentity._id, this.userIdentity.username, this.userIdentity.password,
+        this.userIdentity.email, this.userIdentity.firstName, this.userIdentity.lastName);
+    } else {
+      this.router.navigate(['/login']);
+    }
+    /*
     this.userService.findUserById(this.userId)
       .subscribe(
         (data: any) => {
@@ -35,7 +47,7 @@ export class ProfileComponent implements OnInit {
           this.notificationMessage = 'Error fetching users profile information' ;
         }
         );
-
+    */
   }
 
   logout() {
