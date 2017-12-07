@@ -1,7 +1,15 @@
 module.exports = function(app,model) {
 
   var multer = require('multer');
-  var upload = multer({ dest: __dirname + '/../../src/assets/uploads' });
+  var path="";
+  if(process.env.MLAB_USERNAME_WEBDEV) {
+    path='/../../dist/assets/uploads'
+  }
+  else
+  {
+    path='/../../src/assets/uploads';
+  }
+  var upload = multer({ dest: __dirname + path });
 
 
   app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
