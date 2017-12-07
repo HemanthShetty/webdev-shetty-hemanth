@@ -5,8 +5,22 @@ module.exports = function(app,model) {
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
   var LocalStrategy = require('passport-local').Strategy;
+  var FacebookStrategy = require('passport-facebook').Strategy;
   passport.use(new LocalStrategy(localStrategy));
+  var facebookConfig = {
+    clientID     : '',
+    clientSecret : '',
+    callbackURL  : 'http://localhost:3100/auth/facebook/callback'
+  };
+  passport.use(
+    new FacebookStrategy(facebookConfig, facebookStrategy));
 
+  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/user',
+      failureRedirect: '/login'
+    }));
   app.post('/api/user', createUser);
   app.post('/api/register', register);
   app.get('/api/user', findUser);
@@ -46,6 +60,36 @@ module.exports = function(app,model) {
           if (err) { return done(err); }
         }
       );
+  }
+
+
+  function facebookStrategy(token, refreshToken, profile, done) {
+    model.userModel
+      .findUserByFacebookId(profile.id)
+      .then(function(user) {
+          if(user) {
+            return done(null, user);
+          } else {
+            var names = profile.displayName.split(" ");
+            var newFacebookUser = {
+              firstName:  names[0],
+              lastName:  names[1],
+              facebook: {
+                id:    profile.id,
+                token: token
+              },
+              email: profile.emails[0].value
+            };
+            userModel
+              .createUser(newFacebookUser)
+              .then(function (user) {
+                return done(null, user);
+              });
+          }
+        },
+        function(err) {
+          if (err) { return done(err); }
+        });
   }
 
   function serializeUser(user, done) {
