@@ -1,17 +1,8 @@
 module.exports = function(app,model) {
 
   var multer = require('multer');
-  var serverPath="";
-  if(process.env.MLAB_USERNAME_WEBDEV) {
-    serverPath='/../../dist/assets/uploads';
-  }
-  else
-  {
-    serverPath='/../../src/assets/uploads';
-  }
-  var upload = multer({ dest: __dirname + serverPath });
+  var upload = multer({ dest: __dirname + '/../../src/assets/uploads' });
 
-  console.log('dir is'+__dirname);
 
   app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
   app.post('/api/page/:pageId/widget', createWidget);
@@ -107,7 +98,7 @@ module.exports = function(app,model) {
     var url = 'assets/uploads/' + filename;
     var domain = 'http://localhost:4200';
     if(process.env.MLAB_USERNAME_WEBDEV) {
-        url = process.env.URL_PROD+'/uploads/'+ filename;
+        url = process.env.URL_PROD+'/assets/uploads/'+ filename;
       domain =  process.env.URL_PROD;
     }
     console.log('url is'+url);
