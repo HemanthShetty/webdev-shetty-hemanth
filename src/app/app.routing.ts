@@ -24,6 +24,7 @@ import {WidgetYoutubeComponent} from './components/widget/widget-edit/widget-you
 import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
 import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component';
 import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {AuthGuard} from './services/auth-guard.service';
 
 
 
@@ -34,7 +35,7 @@ const APP_ROUTES: Routes = [
   {path : 'login' , component: LoginComponent},
   {path : 'home' , component: HomeComponent},
   {path : 'register' , component: RegisterComponent },
-  {path : 'user' , component: ProfileComponent},
+  {path : 'user' , component: ProfileComponent , canActivate: [AuthGuard]},
   {path : 'user/:userId' , component: ProfileComponent},
   {path : 'user/:userId/website' , component: WebsiteListComponent},
   {path : 'user/:uid/website/new' , component: WebsiteNewComponent},

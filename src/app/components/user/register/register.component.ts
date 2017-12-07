@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
           (data: any) => {
             if (this.user) {
               this.sharedService.user = data;
-              this.router.navigate(['/user', this.user._id]);
+              this.router.navigate(['/user']);
             } else {
               this.errorFlag = true;
               this.errorMsg = 'Failed to create the user';

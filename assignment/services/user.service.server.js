@@ -5,7 +5,7 @@ module.exports = function(app,model) {
   passport.deserializeUser(deserializeUser);
   var LocalStrategy = require('passport-local').Strategy;
   passport.use(new LocalStrategy(localStrategy));
-  
+
   app.post('/api/user', createUser);
   app.post('/api/register', register);
   app.get('/api/user', findUser);
@@ -13,15 +13,26 @@ module.exports = function(app,model) {
   app.put('/api/user/:userId', updateUser);
   app.delete('/api/user/:userId', deleteUser);
   app.post('/api/login', passport.authenticate('local'), login);
+  app.post('/api/logout', logout);
+  app.post('/api/loggedIn', loggedin);
+
+  function loggedin(req, res) {
+    res.send(req.isAuthenticated() ? req.user : '0');
+  }
 
   function login(req, res) {
     var user = req.user;
     res.json(user);
   }
 
+  function logout(req, res) {
+    req.logOut();
+    res.send(200);
+  }
+
   function localStrategy(username, password, done) {
-    userModel
-      .findUserByCredentials({'username':username,'password':password})
+    model.userModel
+      .findUserByCredentails({'username':username,'password':password})
       .then(
         function(user) {
           if(user.username === username && user.password === password) {
@@ -41,7 +52,7 @@ module.exports = function(app,model) {
   }
 
   function deserializeUser(user, done) {
-    userModel
+    model.userModel
       .findUserById(user._id)
       .then(
         function(user){
@@ -59,7 +70,11 @@ module.exports = function(app,model) {
     model.userModel.createUser(user).then(function(data)
     {
       req.login(user, function(err){
-        res.json(user);
+        if(err) {
+          res.status(400).send(err);
+        } else {
+          res.json(user);
+        }
       });
     },function(err){
       res.json(null);

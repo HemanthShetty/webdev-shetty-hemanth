@@ -38,6 +38,13 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  logout() {
+    this.userService.logout()
+      .subscribe(
+        (data: any) => this.router.navigate(['/login'])
+      );
+  }
+
   editProfile() {
     if (this.profileForm.valid) {
       this.user.username = this.profileForm.value.username;

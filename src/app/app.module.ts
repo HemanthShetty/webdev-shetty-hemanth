@@ -33,6 +33,7 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {FlickrService} from './services/flickr.service.client';
 import {SharedService} from './services/shared.service.client';
+import {AuthGuard} from './services/auth-guard.service';
 
 
 
@@ -70,7 +71,7 @@ import {SharedService} from './services/shared.service.client';
     Routing
   ],
   // Client Side services here
-  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

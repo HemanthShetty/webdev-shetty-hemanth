@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
           } else {
             this.isInvalid = false;
             this.sharedService.user = data;
-            this.router.navigate(['/user', data._id]);
+            this.router.navigate(['/user']);
           }
              } ,
         (error: any) => {
