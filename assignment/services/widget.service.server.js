@@ -1,7 +1,15 @@
 module.exports = function(app,model) {
 
   var multer = require('multer');
-  var upload = multer({ dest: __dirname + '/../../src/assets/uploads' });
+  var serverPath="";
+  if(process.env.MLAB_USERNAME_WEBDEV) {
+    serverPath='/../../dist/assets/uploads';
+  }
+  else
+  {
+    serverPath='/../../src/assets/uploads';
+  }
+  var upload = multer({ dest: __dirname + serverPath });
 
   console.log('dir is'+__dirname);
 
