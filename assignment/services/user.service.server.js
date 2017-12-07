@@ -7,8 +7,17 @@ module.exports = function(app,model) {
   var LocalStrategy = require('passport-local').Strategy;
   var FacebookStrategy = require('passport-facebook').Strategy;
   passport.use(new LocalStrategy(localStrategy));
+  var clientId;
+  if(process.env.FACEBOOK_CLIENT_ID)
+  {
+    clientId=process.env.FACEBOOK_CLIENT_ID;
+  }
+  else
+  {
+    clientId='xxxxxxxxxx';
+  }
   var facebookConfig = {
-    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientID     : clientId,
     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
   };

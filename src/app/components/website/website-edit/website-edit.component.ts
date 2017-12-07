@@ -57,6 +57,7 @@ export class WebsiteEditComponent implements OnInit {
       );
     this.websiteDetails = new Website('', '' , '' , '' );
   }
+
   updateWebsite() {
     if (this.websiteForm.valid) {
       this.websiteDetails.name = this.websiteForm.value.websiteName;
