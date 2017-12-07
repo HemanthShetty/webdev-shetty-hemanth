@@ -1,6 +1,7 @@
 module.exports = function(app,model) {
 
   var passport=require('passport');
+  var bcrypt = require("bcrypt-nodejs");
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
   var LocalStrategy = require('passport-local').Strategy;
@@ -32,10 +33,10 @@ module.exports = function(app,model) {
 
   function localStrategy(username, password, done) {
     model.userModel
-      .findUserByCredentails({'username':username,'password':password})
+      .findUserByUsername(username)
       .then(
         function(user) {
-          if(user.username === username && user.password === password) {
+          if(user.username === username && bcrypt.compareSync(password, user.password)) {
             return done(null, user);
           } else {
             return done(null, false);
@@ -67,6 +68,7 @@ module.exports = function(app,model) {
   function register(req,res)
   {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
     model.userModel.createUser(user).then(function(data)
     {
       req.login(data, function(err){
@@ -117,13 +119,20 @@ module.exports = function(app,model) {
   function findUserByCredentails(req,res){
     var username = req.query['username'];
     var password = req.query['password'];
-    model.userModel.findUserByCredentails({'username':username,'password':password}).then(function(data)
-      {
-        res.json(data);
-      },function(err){
-        res.json(null);
-      }
-    );
+    model.userModel
+      .findUserByUsername(username)
+      .then(
+        function(user) {
+          if(user.username === username && bcrypt.compareSync(password, user.password)) {
+
+          } else {
+            res.json(null);
+          }
+        },
+        function(err) {
+          res.json(null);
+        }
+      );
   }
 
   function findUserById(req,res)
