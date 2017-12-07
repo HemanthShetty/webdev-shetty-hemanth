@@ -917,6 +917,7 @@ var ProfileComponent = (function () {
         });
         if (this.userIdentity) {
             this.user = new __WEBPACK_IMPORTED_MODULE_4__models_user_model_client__["a" /* User */](this.userIdentity._id, this.userIdentity.username, this.userIdentity.password, this.userIdentity.email, this.userIdentity.firstName, this.userIdentity.lastName);
+            this.userId = this.user._id;
         }
         else {
             this.router.navigate(['/login']);

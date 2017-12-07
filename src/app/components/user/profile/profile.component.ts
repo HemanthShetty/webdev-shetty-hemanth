@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
     if (this.userIdentity) {
       this.user = new User(this.userIdentity._id, this.userIdentity.username, this.userIdentity.password,
         this.userIdentity.email, this.userIdentity.firstName, this.userIdentity.lastName);
+      this.userId = this.user._id;
     } else {
       this.router.navigate(['/login']);
     }
