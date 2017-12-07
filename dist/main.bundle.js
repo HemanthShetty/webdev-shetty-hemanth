@@ -780,7 +780,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <h1>Login</h1>\n  <input placeholder=\"username\"\n         [(ngModel)]=\"username\"\n         type=\"text\"\n         class=\"form-control\"/>\n  <input placeholder=\"password\"\n         [(ngModel)]=\"password\"\n         type=\"password\"\n         class=\"form-control\"/>\n  <div *ngIf=\"isInvalid\"\n       class=\"alert alert-danger\">\n    {{notificationMessage}}\n  </div>\n  <a class=\"btn btn-primary btn-block\" (click)=\"login(username,password)\">Login</a>\n  <a class=\"btn btn-success btn-block\" (click)=\"register()\">Register</a>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <h1>Login</h1>\n  <input placeholder=\"username\"\n         [(ngModel)]=\"username\"\n         type=\"text\"\n         class=\"form-control\"/>\n  <input placeholder=\"password\"\n         [(ngModel)]=\"password\"\n         type=\"password\"\n         class=\"form-control\"/>\n  <div *ngIf=\"isInvalid\"\n       class=\"alert alert-danger\">\n    {{notificationMessage}}\n  </div>\n  <a class=\"btn btn-primary btn-block\" (click)=\"login(username,password)\">Login</a>\n  <a href=\"localhost:3100/facebook/login\" class=\"btn btn-primary btn-block\">\n    <span class=\"fa fa-facebook\"></span>\n    Facebook\n  </a>\n  <a class=\"btn btn-success btn-block\" (click)=\"register()\">Register</a>\n</div>\n"
 
 /***/ }),
 
