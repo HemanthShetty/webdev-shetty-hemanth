@@ -1,7 +1,9 @@
 module.exports = function(app,model) {
 
   var multer = require('multer');
-  var upload = multer({ dest: __dirname + '/../../dist/assets/uploads' });
+  var upload = multer({ dest: __dirname + '/../../src/assets/uploads' });
+
+  console.log('dir is'+__dirname);
 
   app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
   app.post('/api/page/:pageId/widget', createWidget);
@@ -89,19 +91,22 @@ module.exports = function(app,model) {
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
     var width  = req.body.width;
+    if(width==null)
+    {
+      width=75;
+    }
 
     var url = 'assets/uploads/' + filename;
     var domain = 'http://localhost:4200';
     if(process.env.MLAB_USERNAME_WEBDEV) {
-        console.log('here');
         url = process.env.URL_PROD+'/uploads/'+ filename;
       domain =  process.env.URL_PROD;
     }
-
+    console.log('url is'+url);
     var w  = {"widgetType":"IMAGE","pageId":pageId,
       "size":"","text":"","width":width,"url":url};
 
-    console.log(JSON.stringify(w));
+
     if(widgetId === '') {
       model.widgetModel.createWidget(w)
         .then(function (w) {
