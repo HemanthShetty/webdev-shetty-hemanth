@@ -11,6 +11,7 @@ PageModel.findAllPagesForWebsite = findAllPagesForWebsite;
 PageModel.findPageById = findPageById;
 PageModel.updatePage = updatePage;
 PageModel.deletePage = deletePage;
+PageModel.reorderWidgetsWithinPage = reorderWidgetsWithinPage;
 
 module.exports = PageModel;
 
@@ -32,4 +33,14 @@ function updatePage(page) {
 
 function deletePage(pageId) {
   return PageModel.deleteOne({_id:pageId});
+}
+
+function reorderWidgetsWithinPage(pageId, startPos, endPos) {
+  return PageModel.findPageById(pageId)
+    .then(function (page) {
+      var pageWidgets = page.widgets;
+      pageWidgets.splice(endPos, 0, pageWidgets.splice(startPos, 1)[0]);
+      page.widgets = pageWidgets;
+      return page.save();
+    });
 }

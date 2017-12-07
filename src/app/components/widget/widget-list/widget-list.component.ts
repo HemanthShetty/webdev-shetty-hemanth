@@ -34,6 +34,11 @@ export class WidgetListComponent implements OnInit {
       );
   }
 
+  myFunc(event: Object) {
+    this.widgetService.updateWidgetPosition(this.pageId, event['startIndex'], event['endIndex'])
+      .subscribe((data) => {});
+  }
+
   sanitizedURL(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }

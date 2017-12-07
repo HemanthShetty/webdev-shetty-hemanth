@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Directive, ElementRef, NgModule, Renderer2 } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -34,6 +34,7 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
 import {FlickrService} from './services/flickr.service.client';
 import {SharedService} from './services/shared.service.client';
 import {AuthGuard} from './services/auth-guard.service';
+import { SortableDirective } from './directives/sortable.directive';
 
 
 
@@ -61,7 +62,8 @@ import {AuthGuard} from './services/auth-guard.service';
     WidgetYoutubeComponent,
     WidgetHtmlComponent,
     WidgetTextComponent,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    SortableDirective
   ],
   imports: [
     BrowserModule,
