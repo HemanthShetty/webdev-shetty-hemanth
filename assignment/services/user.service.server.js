@@ -69,11 +69,11 @@ module.exports = function(app,model) {
     var user = req.body;
     model.userModel.createUser(user).then(function(data)
     {
-      req.login(user, function(err){
+      req.login(data, function(err){
         if(err) {
           res.status(400).send(err);
         } else {
-          res.json(user);
+          res.json(data);
         }
       });
     },function(err){

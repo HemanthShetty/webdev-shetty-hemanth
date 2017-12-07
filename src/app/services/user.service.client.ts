@@ -16,11 +16,14 @@ export class UserService {
   baseUrl = environment.baseUrl;
 
 
-  register(username, password) {
+  register(user: any) {
     this.options.withCredentials = true;
     const credentials = {
-      username : username,
-      password : password,
+      username: user.username,
+      password: user.password,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
     };
     return this._http.post(this.baseUrl + '/api/register', credentials, this.options)
       .map((res: Response) => {

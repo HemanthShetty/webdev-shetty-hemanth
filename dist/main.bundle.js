@@ -1039,8 +1039,9 @@ var RegisterComponent = (function () {
             this.user.firstName = this.registrationForm.value.firstName;
             this.user.lastName = this.registrationForm.value.lastName;
             this.user.email = this.registrationForm.value.email;
-            this.userService.register(this.user.username, this.user.password)
+            this.userService.register(this.user)
                 .subscribe(function (data) {
+                _this.user = data;
                 if (_this.user) {
                     _this.sharedService.user = data;
                     _this.router.navigate(['/user']);
@@ -2758,11 +2759,14 @@ var UserService = (function () {
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]();
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
-    UserService.prototype.register = function (username, password) {
+    UserService.prototype.register = function (user) {
         this.options.withCredentials = true;
         var credentials = {
-            username: username,
-            password: password,
+            username: user.username,
+            password: user.password,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email
         };
         return this._http.post(this.baseUrl + '/api/register', credentials, this.options)
             .map(function (res) {
