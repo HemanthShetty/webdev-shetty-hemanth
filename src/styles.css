@@ -3,10 +3,7 @@
 input{
   margin-bottom: 5px;
 }
-body {
-  padding-top: 70px;
-  padding-bottom: 70px;
-}
+
 
 .navbar-default .navbar-text a,.navbar-default .navbar-header a{
   color: white;

@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\ninput{\n  margin-bottom: 5px;\n}\nbody {\n  padding-top: 70px;\n  padding-bottom: 70px;\n}\n\n.navbar-default .navbar-text a,.navbar-default .navbar-header a{\n  color: white;\n}\n\n\n\n\n.navbar-default{\n  background-color: #0083c3;\n}\n\n\n\n.hsm-wdv-toolbar{\n  position: absolute;\n  right: 3px;\n  background-color: lightgrey;\n  padding: 3px;\n  border-bottom-left-radius: 9px;\n  opacity: 0.5;\n}\n\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\ninput{\n  margin-bottom: 5px;\n}\n\n\n.navbar-default .navbar-text a,.navbar-default .navbar-header a{\n  color: white;\n}\n\n\n\n\n.navbar-default{\n  background-color: #0083c3;\n}\n\n\n\n.hsm-wdv-toolbar{\n  position: absolute;\n  right: 3px;\n  background-color: lightgrey;\n  padding: 3px;\n  border-bottom-left-radius: 9px;\n  opacity: 0.5;\n}\n\n", ""]);
 
 // exports
 
