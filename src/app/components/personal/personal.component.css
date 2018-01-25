@@ -107,6 +107,13 @@ iframe {
 }
 */
 /* ======= Header ======= */
+.hsm-profile
+{
+  border-radius: 50%;
+  max-width:10%;
+  max-height:10%;
+  margin-right: 10px;
+}
 .hsm-portfolio-header
 {
   padding: 30px 0;
