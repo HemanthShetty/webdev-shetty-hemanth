@@ -25,6 +25,7 @@ import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/w
 import {WidgetTextComponent} from './components/widget/widget-edit/widget-text/widget-text.component';
 import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {AuthGuard} from './services/auth-guard.service';
+import {PersonalComponent} from './components/personal/personal.component';
 
 
 
@@ -32,6 +33,7 @@ import {AuthGuard} from './services/auth-guard.service';
 const APP_ROUTES: Routes = [
   {path: '', component : LoginComponent},
   {path: 'test', component: TestComponent},
+  {path: 'personal', component : PersonalComponent},
   {path : 'login' , component: LoginComponent},
   {path : 'home' , component: HomeComponent},
   {path : 'register' , component: RegisterComponent },

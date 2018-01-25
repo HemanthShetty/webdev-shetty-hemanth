@@ -35,6 +35,7 @@ import {FlickrService} from './services/flickr.service.client';
 import {SharedService} from './services/shared.service.client';
 import {AuthGuard} from './services/auth-guard.service';
 import { SortableDirective } from './directives/sortable.directive';
+import {PersonalComponent} from './components/personal/personal.component';
 
 
 
@@ -44,6 +45,7 @@ import { SortableDirective } from './directives/sortable.directive';
   declarations: [
     AppComponent,
     HomeComponent,
+    PersonalComponent,
     TestComponent,
     LoginComponent,
     ProfileComponent,
