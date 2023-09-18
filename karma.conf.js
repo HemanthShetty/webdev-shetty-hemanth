@@ -23,8 +23,8 @@ module.exports = function (config) {
       environment: 'dev'
     },
     reporters: ['progress', 'kjhtml'],
-    port: 9876,
-    colors: true,
+    port: 19876,
+    colors: false,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
